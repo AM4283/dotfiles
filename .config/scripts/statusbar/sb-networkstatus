@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Show wifi 📶 and percent strength or 📡 if none.
+# Show 🌐 if connected to ethernet or ❎ if none.
+# Show 🔒 if a vpn connection is active
+
+case $BUTTON in
+	1) alacritty -e nmtui; pkill -RTMIN+11 dwmblocks ;;
+esac
+
+case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
+	down) wifiicon="睊" ;;
+	up) wifiicon="$(awk '/^\s*w/ { print "直 ", int($3 * 100 / 70) "% " }' /proc/net/wireless)" ;;
+esac
+ethernet=$(sed "s/down//;s/up/ /" /sys/class/net/e*/operstate 2>/dev/null)
+vpn=$(sed 's/.*/  /' /sys/class/net/tun*/operstate 2>/dev/null)
+wireguard=$(sed 's/.*/  /' /sys/class/net/wg*/operstate 2>/dev/null)
+mullvad=$(sed 's/.*/  /' /sys/class/net/mull*/operstate 2>/dev/null)
+printf "%s%s%s%s%s\n" "$wifiicon" "$ethernet" "$vpn" "$wireguard" "$mullvad"

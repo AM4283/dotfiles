@@ -1,0 +1,15 @@
+#!/bin/sh
+day="$(date '+%_d,')"
+if [ "$(echo "$day" | cut -c1)" = "0" ]; then
+	day="$(echo "$day" | cut -d'0' -f2)" 
+fi
+hour="$(date '+%I')"
+if [ "$(echo "$hour" | cut -c1)" = "0" ]; then
+	hour="$(echo "$hour" | cut -d'0' -f2)"
+fi
+minampm="$(date '+:%M %p')"
+monthyr="$(date '+%a %b ')"
+case $BUTTON in
+    1) naivecalendar ;;
+esac
+echo " $monthyr$day $hour$minampm"

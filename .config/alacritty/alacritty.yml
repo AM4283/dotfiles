@@ -1,0 +1,17 @@
+import:
+  - ~/.config/alacritty/fonts.yml
+  - ~/.config/alacritty/colors.yml
+window:
+  padding:
+    x: 2
+    y: 2
+  dynamic_padding: true
+  decorations: none
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+cursor:
+  style: Beam
+  unfocused_hollow: true

@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+DMEDITOR="st -e lvim"
+DMENU="rofi -dmenu -l 20 -p"
+note_dir="${XDG_CONFIG_HOME}/scripts/notes"
+cp2cb() {
+  case "$XDG_SESSION_TYPE" in
+    'x11') xclip -r -selection clipboard;;
+    'wayland') wl-copy -n;; 
+    *) err "Unknown display server";; 
+  esac
+}
+declare -a notes
+cd ${note_dir}
+for i in *.txt
+do
+  # echo $i
+  notes=(${notes[@]} "$i")
+done
+for i in *.md
+do
+  # echo $i
+  notes=(${notes[@]} "$i")
+done
+for i in *.org
+do
+  # echo $i
+  notes=(${notes[@]} "$i")
+done
+delete=("*.txt" "*.org" "*.md")
+for element in "${delete[@]}"; do
+  for i in "${!notes[@]}"; do
+    if [[ "${notes[i]}" = "$element" ]]; then
+      unset notes[i]
+    fi
+  done
+done
+# printf '%s\n' "${notes[@]}"
+main() {
+  choice=$(printf 'Copy note\nNew quick note\nNew note\nEdit note\nDelete note\nQuit' | ${DMENU} 'Notes ' "$@")
+  case "$choice" in
+    'Copy note')
+      note_pick=$(printf '%s\n' "${notes[@]}" | ${DMENU} 'Pick a note')
+      if [ -n "$note_pick" ]; then
+        echo "$note_pick"
+        declare -a lines
+        mapfile -t lines < ${note_dir}/"${note_pick}"
+        line_pick=$(printf '%s\n' "${lines[@]}" | ${DMENU} 'Pick a line (press ESC to copy whole note) ')
+        # echo "$line_pick"
+        if [ -z "$line_pick" ]; then
+          # echo "YOU HERE BRUH"
+          cat ${note_dir}/"${note_pick}" | cp2cb
+          exit
+        else
+          echo "$line_pick" | cp2cb
+          # echo "YOU HERE"
+          exit
+        fi
+      else
+        exit 1
+      fi
+      ;;
+    'New quick note')
+      note_new=$(echo "" | ${DMENU} 'Enter new note name' | sed "s/ /_/g")
+      if [ -n "$note_new" ]; then
+        time="$(date "+%m-%d-%g_%H-%M-%S")"
+        notename="${note_new}_${time}.txt"
+        touch ${note_dir}/"${notename}"
+        note_contents=$(echo "" | ${DMENU} 'Enter note contents')
+        if [ -n "$note_contents" ]; then
+          printf '%s' "${note_contents}" >>  ${note_dir}/"${notename}"
+          exit
+        else
+          exit 1
+        fi
+      else
+        exit 1
+      fi
+      ;;
+    'New note')
+      note_new=$(echo "" | ${DMENU} 'Enter new note name' | sed "s/ /_/g")
+      if [ -n "$note_new" ]; then
+        time="$(date "+%m-%d-%g_%H-%M-%S")"
+        filetype=$(printf '%s\n' "Plaintext" "Markdown" "Org" | ${DMENU} 'Choose the filetype ')
+        case "$filetype" in
+          'Plaintext')
+            notename="${note_new}_${time}.txt"
+            ;;
+          'Markdown')
+            notename="${note_new}_${time}.md"
+            ;;
+          'Org')
+            notename="${note_new}_${time}.org"
+            ;;
+          *)
+            notename="${note_new}_${time}.txt"
+            ;;
+        esac
+        touch ${note_dir}/"${notename}"
+        ${DMEDITOR} ${note_dir}/"${notename}"
+      else
+        exit 1
+      fi
+      ;;
+    'Edit note')
+      note_pick=$(printf '%s\n' "${notes[@]}" | ${DMENU} 'Pick a note')
+      if [ -n "$note_pick" ]; then
+        ${DMEDITOR} ${note_dir}/"${note_pick}"
+      else
+        exit 1
+      fi
+      ;;
+    'Delete note')
+      note_pick=$(printf '%s\n' "${notes[@]}" | ${DMENU} 'Pick a note')
+      if [ -n "$note_pick" ]; then
+        rm ${note_dir}/"${note_pick}"
+        exit
+      else
+        exit 1
+      fi
+      ;;
+    'Quit')
+      echo "Program terminated." && exit 0
+      ;;
+    *)
+      exit 0
+      ;;
+  esac
+}
+main
+# [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

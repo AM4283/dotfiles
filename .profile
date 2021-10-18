@@ -1,0 +1,13 @@
+export DEVKITPRO=/opt/devkitpro
+export DEVKITARM=${DEVKITPRO}/devkitARM
+export DEVKITARM=${DEVKITPRO}/devkitPPC
+export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH=${DEVKITPRO}/tools/bin:$PATH
+export PATH="${PATH}:/home/albi/.local/bin"
+export PATH="${PATH}:/home/albi/.config/scripts/statusbar"
+export QT_QPA_PLATFORMTHEME=qt5ct
+export TERMCMD=st
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export ZDOTDIR=$HOME/.config/zsh

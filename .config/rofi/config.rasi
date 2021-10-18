@@ -1,0 +1,8 @@
+configuration {
+	/* theme: "~/.config/rofi/themes/dt-center.rasi"; */
+	theme: "~/.config/rofi/themes/semitransparent.rasi";
+	font: "Fira Code Semibold 12";
+	icon-theme: "Flatery-Dark";
+	show-icons: true;
+}
+@import "/home/albi/.config/rofi/themes/semitransparent.rasi"

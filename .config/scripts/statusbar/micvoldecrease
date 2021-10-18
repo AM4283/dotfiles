@@ -1,0 +1,13 @@
+#!/bin/sh
+VOLINCREMENT=5
+SOURCE=alsa_input.usb-C-Media_Electronics_Inc._USB_PnP_Audio_Device-00.mono-fallback
+# SOURCE=alsa_input.pci-0000_00_14.2.analog-stereo
+VOL=$(pacmd list-sources | grep -A6 "$SOURCE" | grep "volume: \(front\|mono\)\|muted:" | grep -o "[0-9]*%" | grep -o "[0-9]*" | awk 'FNR == 1 {print}')
+if [ $((VOL - VOLINCREMENT)) -lt 0 ]
+    then
+      pactl set-source-volume $SOURCE 0%
+      VOL=$(pacmd list-sources | grep -A6 "$SOURCE" | grep "volume: \(front\|mono\)\|muted:" | grep -o "[0-9]*%" | grep -o "[0-9]*" | awk 'FNR == 1 {print}')
+    else
+      pactl set-source-volume $SOURCE -$VOLINCREMENT%
+      VOL=$(pacmd list-sources | grep -A6 "$SOURCE" | grep "volume: \(front\|mono\)\|muted:" | grep -o "[0-9]*%" | grep -o "[0-9]*" | awk 'FNR == 1 {print}')
+fi

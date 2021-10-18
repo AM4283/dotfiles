@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+#
+# Script name: dmsearch
+# Description: Search various search engines (inspired by surfraw).
+# Dependencies: dmenu and a web browser
+# GitLab: https://www.gitlab.com/dwt1/dmscripts
+# License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
+# Contributors: Derek Taylor
+#               Ali Furkan Yıldız
+
+# Defining our web browser.
+DMBROWSER="brave"
+
+# An array of search engines.  You can edit this list to add/remove
+# search engines. The format must be: "engine_name - url".
+# The url format must allow for the search keywords at the end of the url.
+# For example: https://www.amazon.com/s?k=XXXX searches Amazon for 'XXXX'.
+declare -a options=(
+"Amazon - https://www.amazon.com/s?k="
+"Archaur - https://aur.archlinux.org/packages/?O=0&K="
+"Archpkg - https://archlinux.org/packages/?sort=&q="
+"Archwiki - https://wiki.archlinux.org/index.php?search="
+#"Arxiv - https://arxiv.org/search/?searchtype=all&source=header&query="
+#"bbcnews - https://www.bbc.co.uk/search?q="
+#"bing - https://www.bing.com/search?q="
+#"cliki - https://www.cliki.net/site/search?query="
+#"cnn - https://www.cnn.com/search?q="
+#"coinbase - https://www.coinbase.com/price?query="
+#"debianpkg - https://packages.debian.org/search?suite=default&section=all&arch=any&searchon=names&keywords="
+#"discogs - https://www.discogs.com/search/?&type=all&q="
+"Duckduckgo - https://duckduckgo.com/?q="
+"Ebay - https://www.ebay.com/sch/i.html?&_nkw="
+"Github - https://github.com/search?q="
+"Gitlab - https://gitlab.com/search?search="
+"Google - https://www.google.com/search?q="
+"Google Images - https://www.google.com/search?hl=en&tbm=isch&q="
+"Google News - https://news.google.com/search?q="
+"IMDB - https://www.imdb.com/find?q="
+#"lbry - https://lbry.tv/$/search?q="
+#"odysee - https://odysee.com/$/search?q="
+"Reddit - https://www.reddit.com/search/?q="
+#"slashdot - https://slashdot.org/index2.pl?fhfilter="
+#"socialblade - https://socialblade.com/youtube/user/"
+#"sourceforge - https://sourceforge.net/directory/?q="
+#"stack - https://stackoverflow.com/search?q="
+#"startpage - https://www.startpage.com/do/dsearch?query="
+#"stockquote - https://finance.yahoo.com/quote/"
+"Thesaurus - https://www.thesaurus.com/misspelling?term="
+"Google Translate - https://translate.google.com/?sl=auto&tl=en&text="
+"Urban Dictionary - https://www.urbandictionary.com/define.php?term="
+"Wayback Machine - https://web.archive.org/web/*/"
+"Dictionary- https://www.merriam-webster.com/dictionary/"
+"Wikipedia - https://en.wikipedia.org/wiki/"
+#"wiktionary - https://en.wiktionary.org/wiki/"
+"Wolfram Alpha - https://www.wolframalpha.com/input/?i="
+"Youtube - https://www.youtube.com/results?search_query="
+"Quit"
+)
+
+# Picking a search engine.
+while [ -z "$engine" ]; do
+enginelist=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i -l 20 -p 'Choose search engine') || exit
+engineurl=$(echo "$enginelist" | awk '{print $NF}')
+engine=$(echo "$enginelist" | awk '{print $1}')
+done
+
+# Searching the chosen engine.
+while [ -z "$query" ]; do
+    if [[ "$engine" == "Quit" ]]; then
+        echo "Program terminated." && exit 0
+    else
+        query=$(echo "$engine" | rofi -dmenu -p 'Enter search query') || exit
+    fi
+done
+
+# Display search results in web browser
+$DMBROWSER "$engineurl""$query"

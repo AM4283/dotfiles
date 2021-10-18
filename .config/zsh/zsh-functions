@@ -1,0 +1,80 @@
+# Function to source files if they exist
+function zsh_add_file() {
+    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+function zsh_add_plugin() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For plugins
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+    fi
+}
+
+function zsh_add_completion() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For completions
+		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+		fpath+="$(dirname "${completion_file_path}")"
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
+    fi
+	completion_file="$(basename "${completion_file_path}")"
+	if [ "$2" = true ] && compinit "${completion_file:1}"
+}
+# extract files
+function ex () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+function exdir () {
+  if [ -f $1 ] ; then
+    filename="$1"
+    dirname=${filename%.*} 
+    case $1 in
+      *.tar.bz2)   mkdir $dirname && tar xjf $1 -C $dirname                     ;;
+      *.tar.gz)    mkdir $dirname && tar xzf $1 -C $dirname                     ;;
+      *.bz2)       mkdir $dirname && mv $1 $dirname && bunzip2 "$dirname/$1"    ;;
+      *.rar)       mkdir $dirname && unrar x $1 $dirname                        ;;
+      *.gz)        mkdir $dirname && mv $1 $dirname && gunzip "$dirname/$1"     ;;
+      *.tar)       mkdir $dirname && tar xf $1 -C $dirname                      ;;
+      *.tbz2)      mkdir $dirname && tar xjf $1 -C $dirname                     ;;
+      *.tgz)       mkdir $dirname && tar xzf $1 -C $dirname                     ;;
+      *.zip)       mkdir $dirname && unzip $1 -d $dirname                       ;;
+      *.Z)         mkdir $dirname && mv $1 $dirname && uncompress "$dirname/$1" ;;
+      *.7z)        mkdir $dirname && 7z x $1 -o$dirname                         ;;
+      *.deb)       mkdir $dirname && ar x --output $dirname $1                  ;;
+      *.tar.xz)    mkdir $dirname && tar xf $1 -C $dirname                      ;;
+      *.tar.zst)   mkdir $dirname && unzstd $1 --output-dir-mirror $dirname     ;;
+      *)           echo "'$1' cannot be extracted via exdir()"                  ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}

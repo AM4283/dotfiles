@@ -1,0 +1,6 @@
+#!/bin/sh
+case $BUTTON in
+  1) redshifttoggle;;
+esac
+STATUS=$(redshiftstatus)
+echo $STATUS

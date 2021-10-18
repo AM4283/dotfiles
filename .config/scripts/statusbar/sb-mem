@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+mem=$(free -h | awk '/^Mem:/ { print $3 }' | sed 's/i//')
+
+case $BUTTON in
+    1) setsid -f alacritty -e htop;;
+    3) memhogs
+esac
+
+echo "  $mem"

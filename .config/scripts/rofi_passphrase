@@ -1,0 +1,2 @@
+#!/bin/sh
+rofi -dmenu -p "Password" -l 0 -password

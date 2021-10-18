@@ -1,0 +1,8 @@
+#!/bin/sh
+case $BUTTON in
+  1) micmute ;;
+  4) micvolincrease ;;
+  5) micvoldecrease ;;
+esac
+VOL=$(micvolume)
+echo $VOL

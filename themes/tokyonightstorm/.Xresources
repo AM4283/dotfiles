@@ -1,0 +1,79 @@
+!! Transparency (0-1):
+*.alpha: 0.9
+
+!! Set a default font and font size as below:
+*.font: Fira Code:pixelsize=17:antialias=true:autohint=true
+*.fontemoji: Noto Color Emoji:pixelsize=13:antialias=true:autohint=true
+*.dwmfont: fixed:size=12:antialias=true:autohint=true
+*.dwmfontalt: mononoki Nerd Font:size=12:antialias=true:autohint=true
+*.dmenufont: fixed:size=10
+
+!! ST settings
+*.tabspaces: 8
+*.termname: st-256color
+*.shell: /bin/zsh
+*.minlatency: 8
+*.maxlatency: 33
+*.blinktimeout: 800
+*.bellvolume: 0
+*.cwscale: 1.0
+*.chscale: 1.0
+
+!! DWM settings
+*.borderpx: 2
+*.snap: 32
+*.showbar: 1
+*.topbar: 1
+*.nmaster: 1
+*.mfact: 0.50
+*.resizehints: 1
+
+/* name		dark	light */
+/* black	0	8 */
+/* red		1	9 */
+/* green	2	10 */
+/* yellow	3	11 */
+/* blue		4	12 */
+/* purple	5	13 */
+/* cyan		6	14 */
+/* white	7	15 */
+/* cursor 256 */
+/* revcursor 257 */
+/* background 258 */
+/* foreground 259 */
+
+!! Tokyo Night Storm
+!! Terminal Colors
+*.color0: #414868
+*.color1: #f7768e
+*.color2: #9ece6a
+*.color3: #7aa2f7
+*.color4: #e0af68
+*.color5: #bb9af7
+*.color6: #7dcfff
+*.color7: #eeffff
+*.color8: #414868
+*.color9: #f7768e
+*.color10: #9ece6a
+*.color11: #7aa2f7
+*.color12: #e0af68
+*.color13: #bb9af7
+*.color14: #7dcfff
+*.color15: #eeffff
+*.cursor: #e0af68
+*.revcursor: #555555
+*.background: #24283b
+*.foreground: #f8f8f0
+*.color260: #5a5475
+*.normbgcolor: #2d3442
+*.normbordercolor: #444444
+*.normfgcolor: #ffffff
+*.selbgcolor: #e0af68
+*.selbordercolor: #e0af50
+*.selfgcolor: #ffffff
+*.rofibg: #24283b
+*.rofiselbg: #9499a6
+*.rofifg: #e0af68
+*.rofiurgentfg: #dc322f
+*.rofiseparatorcolor: #35363A
+*.rofiactivefg: #859900

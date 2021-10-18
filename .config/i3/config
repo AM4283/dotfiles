@@ -1,0 +1,542 @@
+##################
+### SET MODKEY ###
+##################
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+############
+### FONT ###
+############
+font pango:Ubuntu Regular 10
+
+################
+### SET GAPS ###
+################
+
+# disable window title bars
+for_window [class="^.*"] border pixel 2
+default_border pixel 2
+#floating_border pixel 2
+#stacking_border pixel 2
+#split_border pixel 2
+#tabbed_border pixel 2
+
+# gaps
+gaps inner 10
+#gaps outer 10
+# smart gaps
+smart_gaps on
+
+# smart edge borders
+# hide_edge_borders smart_no_gaps
+smart_borders on
+# smart_borders no_gaps
+
+###################################
+### LOCK SCREEN/SLEEP  (UNUSED) ###
+###################################
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- /home/albi/.config/scripts/lock --nofork
+
+################
+### KEYBINDS ###
+################
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+set $myterm alacritty
+bindsym $mod+Return exec $myterm
+
+# start a browser
+set $browser brave
+bindsym $mod+Shift+b exec $browser
+bindsym $mod+Control+b exec "$browser --incognito"
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Rofi
+set $mode_rofi Rofi: Apostrophe (Emoji), B (Search), X (Kill), E (Edit)
+bindsym $mod+Shift+d mode "$mode_rofi"
+bindsym $mod+Tab exec "rofi -modi window -show window"
+bindsym $mod+d exec "rofi -modi window#ssh#drun#run -show drun" 
+mode "$mode_rofi" {
+        bindsym apostrophe exec "rofi -show emoji -modi emoji"
+        bindsym b exec /home/albi/dmscripts/dmsearch
+        bindsym x exec /home/albi/dmscripts/dmkill
+        bindsym e exec /home/albi/dmscripts/dmconf; mode "default"
+        bindsym Escape mode "default"
+}
+#bindsym $mod+d exec "rofi -modi window#ssh#drun#run -show drun"
+#bindsym $mod+Tab exec "rofi -modi window -show window"
+#bindsym $mod+apostrophe exec "rofi -show emoji -modi emoji"
+#bindsym $mod+b exec /home/albi/dmscripts/dmsearch
+#bindsym $mod+x exec /home/albi/dmscripts/dmkill
+#bindsym $mod+Shift+Return exec /home/albi/dmscripts/dmconf
+# bindsym $mod+b exec "rofi -modi keys -show keys"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+i split h;exec notify-send 'Tile Horizontally'
+
+# split in vertical orientation
+bindsym $mod+o split v;exec notify-send 'Tile Veritcally'
+
+# split toggle
+bindsym $mod+p split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+set $mode_layout Layout: S (Stacking), W (Tabbed), E (Toggle Split), T (Default)
+bindsym $mod+Shift+w mode "$mode_layout"
+mode "$mode_layout" {
+        bindsym s layout stacking
+        bindsym w layout tabbed
+        bindsym e layout toggle split
+        bindsym t layout default
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym $mod+Shift+w mode "default"
+}
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+Shift+z focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# pulse audio volume control
+bindsym $mod+Shift+v exec pavucontrol
+
+# flameshot screenshot
+bindsym Print exec flameshot gui
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# exit your computer
+bindsym $mod+z exec /home/albi/.config/scripts/shutdown_menu
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Keybinding for i3lock
+# bindsym $mod+Shift+w exec /home/albi/.config/scripts/lock
+
+######################
+#### GAP KEYBINDS ####
+######################
+
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
+
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
+
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
+
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+##################
+### WORKSPACES ###
+##################
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+
+# Define Monitors (Left is 1, Right is 2)
+set $mon1 DP-0
+set $mon2 DP-2
+set $mon3 HDMI-0
+# Set workspaces to appear on certain monitors
+workspace $ws1 output $mon2
+workspace $ws2 output $mon1
+workspace $ws3 output $mon2
+workspace $ws4 output $mon1
+workspace $ws5 output $mon2
+workspace $ws6 output $mon1
+workspace $ws7 output $mon2
+workspace $ws8 output $mon1
+workspace $ws9 output $mon2
+workspace $ws10 output $mon1
+workspace $ws11 output $mon3
+workspace $ws12 output $mon3
+workspace $ws13 output $mon3
+workspace $ws14 output $mon3
+workspace $ws15 output $mon3
+
+# Assign Programs to Workspaces
+for_window [class="Brave-browser"] move to workspace $ws2
+for_window [class="Spotify"] move to workspace $ws4
+for_window [class="discord"] move to workspace $ws4
+for_window [class="lightcord"] move to workspace $ws4
+for_window [class="Steam"] move to workspace $ws3
+
+### Floating Enable ###
+for_window [class="Yad"] floating enable
+for_window [class="ksnip"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Galculator"] floating enable
+for_window [class="epicgameslauncher.exe"] floating enable
+for_window [class= "^Steam$" title="Friends List"] floating enable
+for_window [class= "^Steam$" title=".* - Chat"] floating enable
+for_window [class= "^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="Anydesk"] floating enable
+for_window [class="cemu.exe"] floating enable
+for_window [class="flameshot"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [instance="editing" class="Alacritty"] floating enable
+
+##########################
+### WORKSPACE KEYBINDS ###
+##########################
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+Shift+F12 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+Shift+Print workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+Shift+Scroll_Lock workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+Shift+Pause workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+Insert workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+Home workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+Prior workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+Delete workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+End workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+Next workspace number $ws10
+bindsym $mod+Control+1 workspace number $ws11
+bindsym $mod+Control+2 workspace number $ws12
+bindsym $mod+Control+3 workspace number $ws13
+bindsym $mod+Control+4 workspace number $ws14
+bindsym $mod+Control+5 workspace number $ws15
+bindsym $mod+a workspace prev
+bindsym $mod+s workspace next
+bindsym $mod+b workspace prev
+bindsym $mod+n workspace next
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+Insert move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+Home move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+Prior move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+Delete move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+End move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+Next move container to workspace number $ws10
+bindsym $mod+Control+6 move container to workspace number $ws11
+bindsym $mod+Control+7 move container to workspace number $ws12
+bindsym $mod+Control+8 move container to workspace number $ws13
+bindsym $mod+Control+9 move container to workspace number $ws14
+bindsym $mod+Control+0 move container to workspace number $ws15
+bindsym $mod+Shift+a move container to workspace prev
+bindsym $mod+Shift+s move container to workspace next
+
+##############
+### COLORS ###
+##############
+
+# Window Colors
+# set $bgcolor #83a598
+#set $bgcolor #458588
+set $bgcolor #81a1c1
+set $ibgcolor #2C3545
+# set $ibgcolor #161616
+set $textcolor #ffffff
+set $itextcolor #909090
+set $ubgcolor #fb4934
+set $indcolor #d3869b
+set $transparent #83a59800
+
+# 			border		background		text		indicator
+client.focused		$bgcolor	$bgcolor		$textcolor	$indcolor
+client.unfocused	$ibgcolor	$ibgcolor		$textcolor	$ibgcolor
+client.focused_inactive	$ibgcolor	$ibgcolor		$textcolor	$ibgcolor
+client.urgent		$ubgcolor	$ubgcolor		$textcolor	$indcolor
+
+###########
+### BAR ###
+###########
+
+# launch polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Start i3bar
+#bar {
+#        # status_command i3status -c /home/albi/.config/i3status/i3status.conf
+#	position top
+#	tray_output primary
+	# tray_output DP-0
+#	status_command i3blocks -c /home/albi/.config/i3blocks/i3blocks.conf
+#        height 25
+#	separator_symbol ")"
+#	i3bar_command i3bar --transparency
+#	font pango:Font Awesome 11
+#	colors {
+#		background $transparent
+#		separator  $textcolor
+		#			border			background		text
+#		focused_workspace	$transparent		$transparent		$textcolor
+#		inactive_workspace	$ibgcolor		$ibgcolor		$textcolor
+#		urgent_workspace	$ubgcolor		$ubgcolor		$textcolor
+#	}
+#}
+
+#################
+### AUTOSTART ###
+#################
+
+# kill xconfd
+# exec_always killall /usr/lib/xfce4/xfconf/xfconfd
+
+# Disabling mouse accel
+exec xset m 0 0
+
+# Display Wallpaper
+#exec_always feh --bg-fill /home/albi/Pictures/backgrounds/fireworkanime.png
+exec_always feh --bg-fill /home/albi/Pictures/backgrounds/animelake.jpg
+
+# Compositor
+exec_always picom -f
+
+# polkit
+exec lxpolkit
+
+# setting screen poweroff time (in seconds 1500 =25min)
+# exec xset s 1500
+exec xset s off
+
+# power manager
+# exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id mate-power-manager
+exec /home/albi/.config/scripts/locker
+
+# notifcation manager
+exec --no-startup-id dunst
+
+# bluetooth manager
+# exec blueman-applet
+
+# clipboard manager Ctrl + Alt + H to pull up history CTRL + ALT + P to pull up menu
+exec parcellite -n
+# JACK
+#exec jack_control start
+# redshift
+# exec redshift-gtk
+# Network Manager
+# exec --no-startup-id nm-applet

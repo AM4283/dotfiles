@@ -1,0 +1,3 @@
+#!/bin/sh
+exec xautolock -detectsleep -time 15 -locker "/home/albi/.config/scripts/lock" -notify 30 -notifier "notify-send -u critical -t -1 'Locking Screen in 30 Seconds'" &
+exec xidlehook --not-when-fullscreen --not-when-audio --timer 1800 "systemctl suspend" -

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1611629880175756-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>folder-black-open</icon>
+	<name>Open Thunar As Root Here</name>
+	<unique-id>1612072817103587-1</unique-id>
+	<command>pkexec thunar %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Edit as root</name>
+	<unique-id>1612073026830687-2</unique-id>
+	<command>sudo st -e nvim %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<text-files/>
+</action>
+<action>
+	<icon>neovim</icon>
+	<name>Open In Terminal</name>
+	<unique-id>1612073271376794-3</unique-id>
+	<command>st -e lvim %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<text-files/>
+</action>
+<action>
+	<icon>emblem-symbolic-link</icon>
+	<name>Create symlink</name>
+	<unique-id>1612073333424811-4</unique-id>
+	<command>ln -Ts %f %n&quot; (symlink)&quot;</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+</action>
+<action>
+	<icon>edit-link</icon>
+	<name>Create hardlink</name>
+	<unique-id>1612073379630945-5</unique-id>
+	<command>ln %f %n&quot; (hardlink)&quot;</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+</action>
+<action>
+	<icon>disk-usage-analyzer</icon>
+	<name>Disk Usage</name>
+	<unique-id>1612073420920828-6</unique-id>
+	<command>baobab %d</command>
+	<description>View disk usage of the current directory</description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>

@@ -1,0 +1,13 @@
+#!/bin/bash
+UPDATENUM=$(pamac checkupdates | grep "available update" | awk '{print $1}')
+if [[ $UPDATENUM =~ ^-?[0-9]+$ ]] 2>/dev/null
+then
+  # UPDATENUM=$(pamac checkupdates | grep "available updates:" | awk '{print $1}')
+  if [ $UPDATENUM = 1 ] 2>/dev/null; then
+    echo  1 update available
+  else
+    echo -e  " $UPDATENUM updates available"
+  fi
+else
+  echo  System is up to date
+fi

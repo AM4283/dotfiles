@@ -1,0 +1,44 @@
+#!/bin/zsh
+# HISTFILE="$XDG_DATA_HOME"/zsh/history
+HISTFILE="$ZDOTDIR"/history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+# PATH
+export PATH="${PATH}:/home/albi/.local/bin"
+export PATH="${PATH}:/home/albi/.cargo/bin"
+# Terminal + manpager
+export TERM="xterm-256color"
+# export TERM="st-256color"
+export RANGER_LOAD_DEFAULT_RC=false
+# export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER='lvim -c "%! col -b" -c "set ft=man nomod nolist ignorecase" -'
+# export MANPAGER="/usr/bin/vim -c 'set ft=man' -"
+# export TERMINAL=/usr/bin/alacritty
+export TERMINAL=/usr/bin/st
+# Browser and editor
+export BROWSER=/usr/bin/brave
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  # export EDITOR='nvim'
+  export EDITOR='lvim'
+fi
+
+# eval statements
+# eval "'pip completion --zsh'"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$("$HOME/.miniconda/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+#         . "$HOME/.miniconda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="$HOME/.miniconda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<

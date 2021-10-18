@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+volume=$(pamixer --get-volume)
+
+case $BUTTON in
+    1) pamixer -t;;
+    2) switchoutput && pkill -RTMIN+10 dwmblocks;;
+    3) pavucontrol;;
+    4) pamixer -i 5 && pkill -RTMIN+10 dwmblocks;;
+    5) pamixer -d 5 && pkill -RTMIN+10 dwmblocks;;
+esac
+
+if [ $volume -ge 70 ]; then
+    icon=" "
+elif [ $volume -gt 30 ]; then
+    icon=" "
+else
+    icon=" "
+fi
+
+[ $(pamixer --get-mute) = true ] && echo "ﱝ " && exit
+
+echo "$icon $volume%"

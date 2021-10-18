@@ -1,0 +1,55 @@
+#!/bin/zsh
+# update plugins
+alias zsh-update-plugins="find $ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -
+
+# get fastest mirrors
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# easier to read disk
+alias df='df -h'
+alias dul='du -h'
+alias du='du -sh'
+alias free='free -m'
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
+# For when keys break
+alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
+
+# change ls to exa
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias l.='exa -a | egrep "^\."'
+
+# confirm move/cp
+alias cp="cp -i"
+alias mv='mv -i'
+
+# alias vim
+alias vi="/usr/bin/nvim"
+alias vim="~/.local/bin/lvim"
+alias nvim="devour neovide"
+
+# system management
+alias pac="sudo pacman"
+alias sys="systemctl"
+alias weather="curl wttr.in/"
+alias timer="termdown"
+alias bell="pactl play-sample bell"
+alias sxiv="devour sxiv"
+alias zathura="devour zathura"
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
