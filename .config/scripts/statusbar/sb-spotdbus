@@ -1,2 +1,0 @@
-#!/bin/sh
-spotifydbus -c /home/albi/.config/scripts/statusbar/spotifyconfig.json
