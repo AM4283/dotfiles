@@ -3,7 +3,7 @@
 
 include "/home/albi/.gtkrc-2.0.mine"
 gtk-theme-name="Flat-Remix-GTK-Yellow-Dark"
-gtk-icon-theme-name="Tela-dark"
+gtk-icon-theme-name="Tela-circle-yellow-dark"
 gtk-font-name="Noto Sans Bold 11"
 gtk-cursor-theme-name="oreo_nord_yellow_cursors"
 gtk-cursor-theme-size=0

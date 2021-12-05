@@ -66,8 +66,9 @@ lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
-vim.cmd ("let g:indentLine_char = '|'")
-vim.g["indentLine_fileTypeExclude"] = { 'dashboard', 'WhichKey', 'man' }
+-- vim.cmd ("let g:indentLine_char = '|'")
+-- vim.g["indentLine_fileTypeExclude"] = { 'dashboard', 'WhichKey', 'man', 'terminal', 'help' }
+-- vim.g["indentLine_bufTypeExclude"] = { 'terminal' }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
@@ -130,7 +131,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.plugins = {
     {"lunarvim/colorschemes"},
     {"folke/tokyonight.nvim"},
-    {"Yggdroot/indentLine"},
+    -- {"Yggdroot/indentLine"},
     {
       'wfxr/minimap.vim',
       run = "cargo install --locked code-minimap",
@@ -140,6 +141,18 @@ lvim.plugins = {
         vim.cmd ("let g:minimap_auto_start = 1")
         vim.cmd ("let g:minimap_auto_start_win_enter = 1")
       end,
+    },
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      event = "BufRead",
+      setup = function()
+        vim.g.indentLine_enabled = 1
+        vim.g.indent_blankline_char = "▏"
+        vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "minimap"}
+        vim.g.indent_blankline_buftype_exclude = {"terminal"}
+        vim.g.indent_blankline_show_trailing_blankline_indent = false
+        vim.g.indent_blankline_show_first_indent_level = false
+      end
     },
 -- debugging
     {
@@ -323,7 +336,7 @@ lvim.plugins = {
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
-  { "TermOpen", "*", "IndentLinesDisable" },
+  -- { "TermOpen", "*", "IndentLinesDisable" },
   { "BufWinEnter", "*.html", "TSBufDisable highlight" },
   { "BufWritePost", "~/suckless/dwmblocks/blocks.h", "!cd ~/suckless/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" },
   { "BufWritePost", "~/suckless/dwm/config.h", "!cd ~/suckless/dwm/; sudo make clean install" },
