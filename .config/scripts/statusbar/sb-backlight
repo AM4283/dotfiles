@@ -1,7 +1,43 @@
 #!/bin/sh
-LIGHT=$(backlight)
+LIGHT=$(light | awk -F. '{print $1}')
 case $BUTTON in
-  4) light -A 5;;
-  5) light -U 5;;
+  4)
+    # light -A 5
+    # if [ "$(acpi -b | awk '{print $3}')" = "Charging," ]; then
+    #   ${XDG_CONFIG_HOME}/scripts/setbright
+    # fi
+
+    # if [ "$(glxinfo | grep "OpenGL renderer" | awk '{print $4}')" != "AMD" ]; then
+    #   if [ "$(light)" != "100.00" ]; then
+    #     xrandr --output eDP --brightness 0."$(light | sed 's/\.//')" > /dev/null 2> /dev/null
+    #     xrandr --output eDP-1-1 --brightness 0."$(light | sed 's/\.//')" > /dev/null 2> /dev/null
+    #   elif [ "$(light)" = "100.00" ]; then
+    #     xrandr --output eDP --brightness 1.00 > /dev/null 2> /dev/null
+    #     xrandr --output eDP-1-1 --brightness 1.00 > /dev/null 2> /dev/null
+    #   fi
+    # fi
+    light -A 5
+    # light -s sysfs/backlight/nvidia_wmi_ec_backlight -A 5
+    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light)
+    ;;
+  5)
+    # light -U 5
+    # if [ "$(acpi -b | awk '{print $3}')" = "Charging," ]; then
+    #   ${XDG_CONFIG_HOME}/scripts/setbright
+    # fi
+
+    # if [ "$(glxinfo | grep "OpenGL renderer" | awk '{print $4}')" != "AMD" ]; then
+    #   if [ "$(light)" != "100.00" ]; then
+    #     xrandr --output eDP --brightness 0."$(light | sed 's/\.//')" > /dev/null 2> /dev/null
+    #     xrandr --output eDP-1-1 --brightness 0."$(light | sed 's/\.//')" > /dev/null 2> /dev/null
+    #   elif [ "$(light)" = "100.00" ]; then
+    #     xrandr --output eDP --brightness 1.00 > /dev/null 2> /dev/null
+    #     xrandr --output eDP-1-1 --brightness 1.00 > /dev/null 2> /dev/null
+    #   fi
+    # fi
+    light -U 5
+    # light -s sysfs/backlight/nvidia_wmi_ec_backlight -U 5
+    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light)
+    ;;
 esac
-echo "  $LIGHT"
+echo " $LIGHT%"

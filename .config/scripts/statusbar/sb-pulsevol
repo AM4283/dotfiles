@@ -18,6 +18,6 @@ else
     icon=" "
 fi
 
-[ $(pamixer --get-mute) = true ] && echo "ﱝ " && exit
+[ $(pamixer --get-mute) = true ] && echo "ﱝ $volume%" && exit
 
-echo "$icon $volume%"
+echo "$icon$volume%"

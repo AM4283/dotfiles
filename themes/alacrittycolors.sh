@@ -30,4 +30,6 @@ do
   num=$((num+1))
   index=$((index+1))
 done
-printf 'background_opacity:\t%s\n' $(xrdb_grep 'alpha')
+# printf 'background_opacity:\t%s\n' $(xrdb_grep 'alpha')
+printf 'window:\n'
+printf '  opacity:\t%s\n' $(xrdb_grep 'alpha')

@@ -4,8 +4,8 @@
 # [[!(-n "pidof i3lock")]] && i3exit lock
 B='#00000000'  # blank
 C='#ffffff22'  # clear ish
-D='#e0af68E6'  # default
-T='#e0af68E6'  # text
+D='#81A1C1E6'  # default
+T='#81A1C1E6'  # text
 W='#fb4934E6'  # wrong
 V='#689d6aE6'  # verifying
 

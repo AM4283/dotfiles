@@ -1,0 +1,19 @@
+#!/bin/env bash
+export SUDO_ASKPASS=/home/albi/.config/scripts/rofi_passphrase
+typeset -A menu
+menu=(
+  [Shutdown]="systemctl poweroff"
+  [Reboot]="systemctl reboot"
+  [Hibernate]="systemctl hibernate"
+  [Suspend]="systemctl suspend"
+  [Halt]="systemctl halt"
+  [Lock]="slock"
+  [Logout]="pkill dwm"
+  [Cancel]=""
+)
+menu_nrows=${#menu[@]}
+ROFI="rofi -dmenu -l ${menu_nrows} -p Signoff"
+selection="$(printf '%s\n' "${!menu[@]}" | sort | ${ROFI})"
+if [[ $? -eq 0 && ! -z ${selection} ]]; then
+  exec ${menu[${selection}]}
+fi

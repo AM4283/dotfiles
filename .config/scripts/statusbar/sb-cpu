@@ -4,4 +4,4 @@ case $BUTTON in
   1) setsid -f alacritty -e htop;;
   3) cpuhogs
 esac
-echo "  $USAGE%"
+echo " $USAGE%"

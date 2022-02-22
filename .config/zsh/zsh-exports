@@ -13,6 +13,7 @@ export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC=false
 # export MANPAGER="nvim -c 'set ft=man' -"
 export MANPAGER='lvim -c "%! col -b" -c "set ft=man nomod nolist ignorecase" -'
+export SUDO_ASKPASS="${XDG_CONFIG_HOME}/scripts/rofi_passphrase"
 # export MANPAGER="/usr/bin/vim -c 'set ft=man' -"
 # export TERMINAL=/usr/bin/alacritty
 export TERMINAL=/usr/bin/st

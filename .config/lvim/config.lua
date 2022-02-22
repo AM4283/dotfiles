@@ -6,18 +6,23 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
--- lvim.colorscheme = "onedarker"
-lvim.colorscheme = "tokyonight"
+-- set theme variant, matching terminal theme if unset
+-- @usage 'main' | 'moon' | 'dawn'
+vim.g.rose_pine_variant = 'main'
+lvim.format_on_save = false
+lvim.colorscheme = "rose-pine"
+lvim.builtin.lualine.theme = "rose-pine"
+-- lvim.colorscheme = "tokyonight"
+-- lvim.colorscheme = "nord"
+-- lvim.colorscheme = "dracula"
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.wrap = true
 vim.cmd('let g:suda_smart_edit = 1')
-
+vim.opt.guifont = "Fira Code:h11"
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -28,7 +33,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 vim.api.nvim_set_keymap('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
-vim.cmd("cmap ww<cr> w<cr> :silent! !~/.config/scripts/refresh<cr>")
+-- vim.cmd("cmap ww<cr> w<cr> :silent! !~/.config/scripts/refresh<cr>")
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- lvim.builtin.telescope.on_config_done = function()
@@ -46,8 +51,16 @@ vim.cmd("cmap ww<cr> w<cr> :silent! !~/.config/scripts/refresh<cr>")
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["m"] = {
-  name = "+Markdown",
-  d = { "<cmd>MarkdownPreview<CR>", "Markdown Preview" }
+  name = "+Markdown/Maven",
+  d = { "<cmd>MarkdownPreview<CR>", "Markdown Preview" },
+  p = {"<cmd>TermExec cmd=\"mvn package\"<CR>", "Package"},
+  t = {"<cmd>TermExec cmd=\"mvn test\"<CR>", "Test"},
+  c = {"<cmd>TermExec cmd=\"mvn compile\"<CR>", "Complie"},
+  i = {"<cmd>TermExec cmd=\"mvn install\"<CR>", "Install"},
+  v = {"<cmd>TermExec cmd=\"mvn verify\"<CR>", "Verify"},
+  u = {"<cmd>TermExec cmd=\"mvn clean\"<CR>", "Clean"},
+  b = {"<cmd>TermExec cmd=\"mvn package && $HOME/java-projects/execjava.sh\"<CR>", "Package and Run"},
+  r = {"<cmd>TermExec cmd=\"$HOME/java-projects/execjava.sh\"<CR>", "Run Main Jar"}
 }
 lvim.builtin.which_key.mappings["="] = { "<cmd>vnew term://zsh<CR>", "Open Terminal" }
 lvim.builtin.which_key.mappings["\\"] = { "<cmd>RnvimrToggle<CR>", "Ranger" }
@@ -63,6 +76,7 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
+lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -72,83 +86,45 @@ lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
--- lvim.builtin.treesitter.ensure_installed = {
---   "bash",
---   "c",
---   "javascript",
---   "json",
---   "lua",
---   "python",
---   "typescript",
---   "css",
---   "rust",
---   "java",
---   "yaml",
--- }
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
-
--- generic LSP settings
--- you can set a custom on_attach function that will be used for all the language servers
--- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
--- you can overwrite the null_ls setup table (useful for setting the root_dir function)
--- lvim.lsp.null_ls.setup = {
---   root_dir = require("lspconfig").util.root_pattern("Makefile", ".git", "node_modules"),
--- }
--- or if you need something more advanced
--- lvim.lsp.null_ls.setup.root_dir = function(fname)
---   if vim.bo.filetype == "javascript" then
---     return require("lspconfig/util").root_pattern("Makefile", ".git", "node_modules")(fname)
---       or require("lspconfig/util").path.dirname(fname)
---   elseif vim.bo.filetype == "php" then
---     return require("lspconfig/util").root_pattern("Makefile", ".git", "composer.json")(fname) or vim.fn.getcwd()
---   else
---     return require("lspconfig/util").root_pattern("Makefile", ".git")(fname) or require("lspconfig/util").path.dirname(fname)
---   end
--- end
-
--- set a formatter if you want to override the default lsp one (if it exists)
--- lvim.lang.python.formatters = {
---   {
---     exe = "black",
---   }
--- }
--- set an additional linter
--- lvim.lang.python.linters = {
---   {
---     exe = "flake8",
---   }
--- }
+-- vim.cmd("let g:minimap_auto_start = 0")
+-- vim.cmd("let g:minimap_auto_start_win_enter = 0")
+vim.cmd("let g:scrollbar_excluded_filetypes = ['nerdtree', 'tagbar', 'help', 'terminal', 'dashboard', 'packer', 'minimap', 'WhichKey', 'man']")
+vim.cmd("let g:scrollbar_excluded_buftypes = ['terminal']")
 
 -- Additional Plugins
 lvim.plugins = {
     {"lunarvim/colorschemes"},
     {"folke/tokyonight.nvim"},
-    -- {"Yggdroot/indentLine"},
+    {"tiagovla/tokyodark.nvim"},
+    {"shaunsingh/nord.nvim"},
+    {"Mofiqul/dracula.nvim"},
     {
-      'wfxr/minimap.vim',
-      run = "cargo install --locked code-minimap",
-      -- cmd = {"Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight"},
-      config = function ()
-        vim.cmd ("let g:minimap_width = 10")
-        vim.cmd ("let g:minimap_auto_start = 1")
-        vim.cmd ("let g:minimap_auto_start_win_enter = 1")
-      end,
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      tag = 'v0.*',
     },
+    {"mangeshrex/uwu.vim"},
+    {"lourenci/github-colors"},
+    -- {
+    --   'wfxr/minimap.vim',
+    --   run = "cargo install --locked code-minimap",
+    --   -- cmd = {"Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight"},
+    --   config = function ()
+    --     vim.cmd ("let g:minimap_width = 10")
+    --     vim.cmd ("let g:minimap_auto_start = 0")
+    --     vim.cmd ("let g:minimap_auto_start_win_enter = 0")
+    --   end,
+    -- },
+    {"Xuyuanp/scrollbar.nvim"},
     {
       "lukas-reineke/indent-blankline.nvim",
       event = "BufRead",
       setup = function()
         vim.g.indentLine_enabled = 1
         vim.g.indent_blankline_char = "▏"
-        vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "minimap"}
+        vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "minimap", "WhichKey", "man"}
         vim.g.indent_blankline_buftype_exclude = {"terminal"}
         vim.g.indent_blankline_show_trailing_blankline_indent = false
         vim.g.indent_blankline_show_first_indent_level = false
@@ -213,18 +189,6 @@ lvim.plugins = {
 -- i3 and sxhkd syntax
     {"PotatoesMaster/i3-vim-syntax"},
     {"kovetskiy/sxhkd-vim"},
--- lua syntax
-    {
-      "folke/lua-dev.nvim",
-      config = function()
-        local luadev = require("lua-dev").setup({
-          -- lspconfig = lvim.lang.lua.lsp.setup
-          lspconfig = NlspConfig
-        })
-        -- lvim.lang.lua.lsp.setup = luadev
-        NlspConfig = luadev
-      end
-    },
 -- colorizer
     {
       "norcalli/nvim-colorizer.lua",
@@ -270,13 +234,6 @@ lvim.plugins = {
       event = "BufWinEnter",
       setup = function()
         vim.cmd [[packadd telescope.nvim]]
-      end,
-    },
-    {
-      "ahmedkhalf/lsp-rooter.nvim",
-      event = "BufRead",
-      config = function()
-        require("lsp-rooter").setup()
       end,
     },
     {
@@ -341,8 +298,13 @@ lvim.autocommands.custom_groups = {
   { "BufWritePost", "~/suckless/dwmblocks/blocks.h", "!cd ~/suckless/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" },
   { "BufWritePost", "~/suckless/dwm/config.h", "!cd ~/suckless/dwm/; sudo make clean install" },
   { "BufWritePost", "~/suckless/dwm/config.def.h", "!cd ~/suckless/dwm/; cp config.def.h config.h && sudo make clean install"},
+  { "BufWritePost", "~/suckless/dwmorig/config.h", "!cd ~/suckless/dwmorig/; sudo make clean install" },
+  { "BufWritePost", "~/suckless/dwmorig/config.def.h", "!cd ~/suckless/dwmorig/; cp config.def.h config.h && sudo make clean install"},
   { "BufWritePost", "~/.dwmblocks/blocks.h", "!cd ~/.dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" },
   { "BufWritePost", "~/.dwm/config.h", "!cd ~/.dwm/; sudo make clean install" },
   { "BufWritePost", "~/.dwm/config.def.h", "!cd ~/.dwm/; cp config.def.h config.h && sudo make clean install"},
-  { "BufWritePost", "~/.Xresources", "!xrdb ~/.Xresources"}
+  { "BufWritePost", "~/.Xresources", "!xrdb ~/.Xresources"},
+  { "WinScrolled,VimResized,QuitPre", "*", "silent! lua require('scrollbar').show()"},
+  { "WinEnter,FocusGained", "*", "silent! lua require('scrollbar').show()"},
+  { "WinLeave,BufLeave,BufWinLeave,FocusLost", "*", "silent! lua require('scrollbar').clear()"}
 }

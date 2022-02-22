@@ -23,28 +23,37 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 ;background = #E62D3442
-background = #BF2d3442
+#E62D34
+#2D3442
+; background = #BF2d3442
+; background = ${xrdb:normbgcolor}
+; label = %title:0:30:...%
+background = ${xrdb:polybarnormbgcolor}
 ;#2D3442
 ;#2D3442
-background-alt = #E640444B
+;background-alt = #E640444B
 ;foreground = ${xrdb:color7:#222}
 
 ; ### TEXT COLOR ###
-foreground = #ffffff
-foreground-alt = #ffffff
+; foreground = #ffffff
+foreground = ${xrdb:normfgcolor}
+; foreground-alt = #ffffff
 # gruvbox
 #primary = #458588
 #primary-alt = #4585A8
 #primary-alt2 = #4585C8
 #primary-alt3 = #4585E8
 # nord
-primary = #81a1c1
-primary-alt = #b48ead
-primary-alt2 = #88c0d0
-primary-alt3 = #b48ead
+; primary = #81a1c1
+; primary-alt = #b48ead
+; primary-alt2 = #88c0d0
+; primary-alt3 = #b48ead
 
 secondary = #ffffff
 alert = #e60053
+
+primary = ${xrdb:selbordercolor}
+primary-alt = ${xrdb:selbgcolor}
 
 ; ### PADDING ###
 [padding]
@@ -62,54 +71,69 @@ normal = 3
 ; ### MAIN BAR ###
 ; ################
 
-[bar/example]
+[bar/main]
 
 ; ### BAR APPEARANCE ###
 
 monitor = ${env:MONITOR:}
 width = 100%
-height = 25
-;offset-x = 1%
-;offset-y = 1%
-radius = 0.0
+height = 30
+; offset-x = 0.5%
+; offset-x-right = 0.5%
+border-left-size=5
+border-right-size=5
+; offset-y = 0.5%
+border-top-size=5
+; border-bottom-size=1
+radius = 10
 fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
-line-size = 2
-line-color = ${colors.primary}
-;border-size = 2
+; line-size = 5
+; line-color = ${colors.primary}
+; border-size =
 ;border-color = #00000000
-padding-left = 0
-padding-right = 0
+; padding-left = 2
+; padding-right = 2
 module-margin-left = ${margins.none}
 module-margin-right = ${margins.none}
 
 ; ### FONTS ###
 
-font-0 = fixed:pixelsize=10;1
-font-1 = Font Awesome 5 Free:pixelsize=10;2
-font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
-font-3 = Font Awesome 5 Brands:pixelsize=10;2
-;font-4 = Material Icons:fontformat=truetype:size=12;2
-;font-5 = Weather Icons:fontformat=truetype:size=12;1
-font-4 = WeatherIcons:size=10;0
-font-5 = MaterialIcons:size=10;2
-font-6 = mononoki Nerd Font:size=16;3
-font-7 = Hack Nerd Font:size=12:antialias=true;2
-font-8 = Apple Color Emoji:fontformat=truetype:scale=10:antialias=true;2
-font-9 = Fira Mono:pixelsize=10;0
-font-10 = UbuntuMono Nerd Font:pixelsize=23;3
-;font-11 = Latin Modern Math:size=10:antialias=true;2
-font-11 = Noto Sans CJK JP:pixelsize=10;2
+; font-0 = fixed:pixelsize=10;1
+font-0 = NotoSans Nerd Font:pixelsize=16:antialias=true:autohint=true;4
+; font-1 = Font Awesome 5 Free:pixelsize=10;2
+; font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
+; font-3 = Font Awesome 5 Brands:pixelsize=10;2
+; font-0 = ${xrdb:dwmfont}
+; font-1 = ${xrdb:dwmfontalt}
+font-1 = Noto Color Emoji:scale=8:antialias=true:autohint=true;4
+; font-1 = ${xrdb:fontemoji}
+font-2 = Noto Sans CJK JP:pixelsize=16;2
+; font-4 = Material Icons:fontformat=truetype:size=12;2
+; font-5 = Weather Icons:fontformat=truetype:size=12;1
+; font-4 = WeatherIcons:size=10;0
+; font-5 = MaterialIcons:size=10;2
+; font-6 = mononoki Nerd Font:size=16;3
+; font-7 = Hack Nerd Font:size=12:antialias=true;2
+; font-8 = Apple Color Emoji:fontformat=truetype:scale=10:antialias=true;2
+; font-9 = Fira Mono:pixelsize=10;0
+; font-10 = UbuntuMono Nerd Font:pixelsize=23;3
+; font-11 = Latin Modern Math:size=10:antialias=true;2
+; font-11 = Noto Sans CJK JP:pixelsize=10;2
 ; ### MODULE SELECTION ###
 
-modules-left = i3 xwindow
-modules-center = spotify
+; modules-left = i3 xwindow
+modules-left = dwm
+; modules-center = spot
 ;modules-center = xwindow spotify-scrolling spotify-prev spotify-play-pause spotify-next
 ;modules-right = weather mic-volume pulseaudio-control memory cpu nvidiagpu eth temperature date powermenu
 ;modules-right = checkupdates weather temperature cpu memory nvidiagpu mic-volume pulseaudio-control bluetooth redshift time
-modules-right = arrow1 weather arrow2 cpu memory arrow3 mic-volume pulseaudio-control arrow4 bluetooth redshift networkstatus time
-;separator = 
+; modules-right = arrow1 weather arrow2 cpu memory arrow3 mic-volume pulseaudio-control arrow4 bluetooth redshift networkstatus time
+modules-right = spot forecast mem cpstat mic-volume pulvol redshift bluetooth bright netstat batt datetime
+; separator = 
+separator = |
+separator-background = ${colors.primary}
 ;separator-font = 7
 
 ; ### TRAY ###
@@ -117,10 +141,12 @@ modules-right = arrow1 weather arrow2 cpu memory arrow3 mic-volume pulseaudio-co
 tray-position = right
 tray-detached = false
 ;tray-maxsize = 16
-tray-transparent = true
-tray-padding = ${padding.normal}
-tray-background = ${colors.primary-alt3}
-tray-underline = ${colors.primary}
+; tray-transparent = true
+tray-padding = ${padding.small}
+tray-radius= 15
+; tray-background = ${colors.primary-alt3}
+tray-background = ${colors.primary}
+; tray-underline = ${colors.primary}
 
 ; ### IPC ###
 
@@ -162,115 +188,72 @@ click-left = /home/albi/.config/scripts/openpamac
 format-underline = #437D81
 
 [module/redshift]
-type = custom/script
-interval = 5
-exec = /home/albi/.config/scripts/redshiftstatus
-click-left = /home/albi/.config/scripts/redshifttoggle
+type = custom/ipc
+hook-0 = sb-redshift
+click-left = env BUTTON=1 sb-redshift && polybar-msg hook redshift 1
 ;format-underline = #0a6cf5
 ;format-underline = ${colors.primary-alt3}
 ;format-background = ${colors.background-alt}
-format-background = ${colors.primary-alt3}
-format-font = 8
+; format-background = ${colors.primary-alt3}
+format-background = ${colors.primary}
+; format-font = 8
 format-padding = ${padding.small}
+initial = 1
 
 [module/bluetooth]
-type = custom/script
-exec = /home/albi/.config/scripts/bluetoothstatus
-click-left = /home/albi/.config/scripts/bluetoothtoggle
-click-right = /home/albi/.config/scripts/bluetoothmanageropen
+type = custom/ipc
+hook-0 = sb-bluetooth
+click-left = env BUTTON=1 sb-bluetooth && polybar-msg hook bluetooth 1
+click-right = env BUTTON=3 sb-bluetooth
 ;format-underline = #0a6cf5
-format-font = 8
+; format-font = 8
 ;format-underline = ${colors.primary-alt3}
-format-background = ${colors.primary-alt3}
+; format-background = ${colors.primary-alt3}
+format-background = ${colors.primary}
 ;format-background = ${colors.background-alt}
 format-padding = ${padding.small}
+initial = 1
 
 ; ### SPOTIFY ###
-
-[module/spotify]
+[module/spot]
 type= custom/script
-interval = 1
-format-prefix = " "
-format-prefix-font = 4
+exec = sb-spotifypy
+label = %output:0:30:...%
 format = <label>
-format-font = 12
-exec = python /home/albi/.config/polybar/scripts/spotify_status.py -f '{artist} - {song}'
-;format-underline = #1db954
-format-foreground=#81b71a
-click-left= playerctl play-pause -p spotify
-click-right= playerctl previous -p spotify
-click-middle= playerctl next -p spotify
+interval = 5
+format-foreground=${colors.foreground}
+format-background= ${colors.primary}
+format-padding = ${padding.small}
+click-left= env BUTTON=1 sb-spotifypy
+click-right= env BUTTON=3 sb-spotifypy
+click-middle= env BUTTON=2 sb-spotifypy
 
-[module/spotify-scrolling]
-type = custom/script
-tail = true
-; prefix symbol is shown before the text
-format-prefix = " "
-format = <label>
-format-foreground=#81b71a
-label-foreground=#81b71a
-exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
-
-[module/spotify-prev]
-type = custom/script
-exec = echo ""
-format = <label>
-label-foreground=#81b71a
-click-left = playerctl previous spotify
-
-[module/spotify-play-pause]
-type = custom/ipc
-hook-0 = echo ""
-hook-1 = echo ""
-initial = 1
-format-foreground=#81b71a
-click-left = playerctl play-pause spotify
-
-[module/spotify-next]
-type = custom/script
-exec = echo " "
-format = <label>
-label-foreground=#81b71a
-click-left = playerctl next spotify
 
 ; ### VOLUME CONTROL ###
+[module/pulvol]
+type= custom/ipc
+format-background = ${colors.primary}
+format-padding = ${padding.small}
+hook-0= sb-pulsevol
+click-left= env BUTTON=1 sb-pulsevol && polybar-msg hook pulvol 1
+click-right= env BUTTON=3 sb-pulsevol && polybar-msg hook pulvol 1
+click-middle= env BUTTON=2 sb-pulsevol && polybar-msg hook pulvol 1
+scroll-up= env BUTTON=4 sb-pulsevol && polybar-msg hook pulvol 1
+scroll-down= env BUTTON=5 sb-pulsevol && polybar-msg hook pulvol 1
+initial = 1
 
 [module/mic-volume]
-type = custom/script
-interval = 1
-;format = <label>
-;format-background = ${colors.background-alt}
-format-background = ${colors.primary-alt2}
-format-padding = ${padding.normal}
+type= custom/ipc
+format-background = ${colors.primary}
+format-padding = ${padding.small}
 ;format-font = 8
 ;format-underline = #FF99FF
 ;format-underline = ${colors.primary-alt2}
-;exec = bash /home/albi/.config/scripts/mic-volume.sh show-vol 
-exec = /home/albi/.config/scripts/micvolume
-click-left = /home/albi/.config/scripts/micmute
-scroll-up = /home/albi/.config/scripts/micvolincrease
-scroll-down = /home/albi/.config/scripts/micvoldecrease
-; Control actions (using pactl)
-;click-left = bash /home/albi/.config/scripts/mic-volume.sh mute-vol 
-;scroll-up = bash /home/albi/.config/scripts/mic-volume.sh inc-vol 
-;scroll-down = bash /home/albi/.config/scripts/mic-volume.sh dec-vol 
-
-[module/pulseaudio-control]
-type = custom/script
-tail = true
-label-padding = 0
-label-foreground = ${colors.foreground}
-exec = pulseaudio-control --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_0a_00.1.hdmi-stereo:  Speakers" --sink-nickname "alsa_output.pci-0000_0c_00.4.analog-stereo:   Headphones" listen
-click-right = exec pavucontrol &
-click-left = pulseaudio-control togmute
-click-middle = /home/albi/.config/scripts/switchoutput
-scroll-up = pulseaudio-control --volume-max 100 up
-scroll-down = pulseaudio-control --volume-max 100 down
-;format-background = ${colors.background-alt}
-format-background = ${colors.primary-alt2}
-format-padding = ${padding.normal}
-;format-underline = #FF99FF
-;format-underline = ${colors.primary-alt2}
+hook-0 = sb-microphone
+click-left = env BUTTON=1 sb-microphone && polybar-msg hook mic-volume 1
+scroll-up = env BUTTON=4 sb-microphone && polybar-msg hook mic-volume 1
+scroll-down = env BUTTON=5 sb-microphone && polybar-msg hook mic-volume 1
+initial = 1
 
 ; ### STATUS ###
 
@@ -282,44 +265,66 @@ format-prefix-font = 8
 format-prefix = " "
 format-underline = ${colors.primary}
 
-[module/weather]
+[module/forecast]
 type = custom/script
-exec = /home/albi/.config/scripts/polybar-forecast
-;exec = busctl --user -j get-property io.ntfd /weather openweathermap.strings RenderedTemplate | jq -r .data
-exec-if = ping openweathermap.org -c 1
 interval = 600
-label-font = 5
-;format-font = 6
-;format-foreground = ${colors.foreground}
-click-left = /home/albi/.config/scripts/weather
-format-padding = ${padding.large}
-;format-background = ${colors.background-alt}
+exec = sb-forecast
+click-left = env BUTTON=1 sb-forecast
+click-middle = env BUTTON=3 sb-forecast
+; format-padding = ${padding.normal}
+format-font = 1
 format-background =  ${colors.primary}
-;format-underline = ${colors.primary}
 
-[module/time]
+[module/datetime]
 type = custom/script
 interval = 1
-;exec = date '+%a %b %_d, %I:%M %p'
-exec = /home/albi/.config/scripts/time
-click-left = naivecalendar
-format-prefix = " "
-format-prefix-font = 8
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #0a6cf5
-;format-underline = ${colors.primary-alt3}
-;format-background = ${colors.background-alt}
-format-background = ${colors.primary-alt3}
-format-padding = ${padding.normal}
-
-[module/networkstatus]
-type = custom/script
-interval = 60
-exec = /home/albi/.config/scripts/networkstatus
-click-left = /home/albi/.config/scripts/nmtui
-format-font = 8
-format-background = ${colors.primary-alt3}
+exec = sb-time
+click-left = env BUTTON=1 sb-time
 format-padding = ${padding.small}
+format-background = ${colors.primary}
+
+[module/netstat]
+type = custom/script
+interval = 10
+exec = sb-networkstatus
+click-left = env BUTTON=1 sb-networkstatus
+format-padding = ${padding.small}
+format-background = ${colors.primary}
+
+[module/bright]
+type = custom/ipc
+hook-0 = sb-backlight
+scroll-up = env BUTTON=4 sb-backlight && polybar-msg hook bright 1
+scroll-down = env BUTTON=5 sb-backlight && polybar-msg hook bright 1
+format-background = ${colors.primary}
+format-padding = ${padding.small}
+initial = 1
+
+[module/mem]
+type = custom/script
+interval = 10
+exec = sb-mem
+click-left = env BUTTON=1 sb-mem
+click-right = env BUTTON=3 sb-mem
+format-padding = ${padding.small}
+format-background = ${colors.primary}
+
+[module/cpstat]
+type = custom/script
+interval = 10
+exec = sb-cpu
+click-left = env BUTTON=1 sb-cpu
+click-right = env BUTTON=3 sb-cpu
+format-padding = ${padding.small}
+format-background = ${colors.primary}
+
+[module/batt]
+type= custom/script
+interval = 5
+exec = sb-battery
+click-right = env BUTTON=3 sb-battery
+format-padding = ${padding.small}
+format-background = ${colors.primary}
 
 ; ### POWER MENU ###
 
@@ -366,8 +371,97 @@ content-foreground = ${colors.primary-alt3}
 content-background = ${colors.primary-alt2}
 
 ; ########################
-; ### BUILT IN MODULES ###
+; ### BUILT IN MODULES ##1
 ; ########################
+; ### DWM MODULE ###
+[module/dwm]
+type = internal/dwm
+format = <label-tags> <label-layout> <label-floating> <label-title>
+; Path to dwm socket (default: /tmp/dwm.sock)
+; socket-path = /tmp/dwm.sock
+
+; Left-click to view tag, right-click to toggle tag view
+enable-tags-click = true
+; Scroll to cycle between available tags
+enable-tags-scroll = true
+; If true and enable-tags-scroll = true, scrolling will view all tags regardless if occupied
+tags-scroll-empty = false
+; If true and enable-tags-scroll = true, scrolling will cycle through tags backwards
+tags-scroll-reverse = false
+; If true and enable-tags-scroll = true, wrap active tag when scrolling
+tags-scroll-wrap = true
+; Left-click to set secondary layout, right-click to switch to previous layout
+enable-layout-click = true
+; Scroll to cycle between available layouts
+enable-layout-scroll = true
+; Wrap when scrolling and reaching beginning/end of layouts
+layout-scroll-wrap = true
+; Reverse scroll direction
+layout-scroll-reverse = false
+
+; If enable-layout-click = true, clicking the layout symbol will switch to this layout
+secondary-layout-symbol = [M]
+
+; Separator in between shown tags
+; label-separator = |
+
+; Title of currently focused window
+; Available tokens:
+;   %title%
+label-title = %title%
+label-title-padding = ${padding.small}
+label-title-foreground = ${colors.foreground}
+label-title-background = ${colors.background}
+label-title-maxlen = 30
+
+; Defaults to 'Desktop'
+label-title-default = "Desktop"
+
+; Symbol of current layout
+; Available tokens:
+;   %symbol%
+label-layout = %symbol%
+label-layout-padding = ${padding.small}
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.background}
+
+; Text to show when currently focused window is floating
+label-floating = F
+
+; States: focused, unfocused, visible, urgent, empty
+; Available tokens:
+;   %name%
+
+; focused = Selected tag on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.primary-alt}
+label-focused-foreground = ${colors.foreground}
+; label-focused-underline= ${colors.primary}
+label-focused-padding = ${padding.normal}
+
+; unfocused = Unselected tag on unselected monitor
+label-unfocused = %name%
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = ${padding.normal}
+
+; visible = Unselected tag, but occupied tag on any monitor
+label-visible = %name%
+label-visible-background = ${colors.background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Unselected tag with window that has urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; empty = Unselected and unoccupied tag
+; This can be set to an empty string to hide empty tags
+label-empty = ""
+label-empty-background = ${colors.background}
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
 
 ; ### I3 MODULE ###
 
@@ -517,34 +611,6 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 label = %date% %time%
 
-[module/powermenu]
-type = custom/menu
-expand-right = true
-format-spacing = 1
-format-underline = #0a6cf5
-label-open = "  "
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-menu-0-0 = reboot
-menu-0-0-exec = systemctl reboot
-menu-0-1 = power off
-menu-0-1-exec = systemctl poweroff
-menu-0-2 = log out
-menu-0-2-exec = i3-msg-exit
-menu-0-3 = lock
-menu-0-3-exec =  /home/albi/.config/scripts/lock
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
@@ -690,5 +756,3 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
-
-; vim:ft=dosini

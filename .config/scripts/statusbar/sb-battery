@@ -13,6 +13,9 @@
 #esac
 
 # Loop through all attached batteries and format the info
+case $BUTTON in
+  3) notify-send -t 10000 "Battery" "$(acpi -b | awk '{print $5, $6, $7}')" ;;
+esac
 for battery in /sys/class/power_supply/BAT?*; do
 	# If non-first battery, print a space separator.
 	[ -n "${capacity+x}" ] && printf " "

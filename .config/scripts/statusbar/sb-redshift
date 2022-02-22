@@ -1,6 +1,23 @@
 #!/bin/sh
 case $BUTTON in
-  1) redshifttoggle;;
+  # 1) redshifttoggle;;
+  1) 
+    if [ "$(pidof redshift)" ]
+    then
+      PID=$(pidof redshift)
+      kill "$PID" > /dev/null
+      sleep 5
+      pkill -RTMIN+10 dwmblocks > /dev/null 2> /dev/null
+    else
+      redshift > /dev/null 2> /dev/null &
+      sleep 3
+      pkill -RTMIN+10 dwmblocks > /dev/null 2> /dev/null
+    fi
+    ;;
 esac
-STATUS=$(redshiftstatus)
+if [ "$(pidof redshift)" ]; then
+  STATUS=""
+else
+  STATUS=""
+fi
 echo $STATUS

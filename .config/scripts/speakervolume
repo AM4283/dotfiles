@@ -1,0 +1,7 @@
+#!/bin/sh
+VOLUME=$(pamixer --get-volume)
+if [ $(pamixer --get-mute) = true ]; then
+  notify-send -t 1000 -i ~/Pictures/speakermuted.png "Volume" "$VOLUME%"
+else
+  notify-send -t 1000 -i ~/Pictures/speakericon.png "Volume" "$VOLUME%"
+fi

@@ -4,7 +4,8 @@
 !! Set a default font and font size as below:
 *.font: Fira Code:pixelsize=17:antialias=true:autohint=true
 *.fontemoji: Noto Color Emoji:pixelsize=13:antialias=true:autohint=true
-*.dwmfont: fixed:size=12:antialias=true:autohint=true
+! *.dwmfont: fixed:size=12:antialias=true:autohint=true
+*.dwmfont: NotoSans Nerd Font:size=12:antialias=true:autohint=true
 *.dwmfontalt: mononoki Nerd Font:size=12:antialias=true:autohint=true
 *.dmenufont: fixed:size=10
 
@@ -28,6 +29,15 @@
 *.mfact: 0.50
 *.resizehints: 1
 
+!! Scaling settings
+! Xft.dpi: 120
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+! rofi.dpi: 120
 /* name		dark	light */
 /* black	0	8 */
 /* red		1	9 */
@@ -64,6 +74,7 @@
 *.background: #2e3440
 *.foreground: #ebeef3
 *.normbgcolor: #2d3442
+*.polybarnormbgcolor: #5a2d3442
 *.normbordercolor: #444444
 *.normfgcolor: #ffffff
 *.selbgcolor: #88c0d0

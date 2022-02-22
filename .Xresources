@@ -4,8 +4,9 @@
 !! Set a default font and font size as below:
 *.font: Fira Code:pixelsize=17:antialias=true:autohint=true
 *.fontemoji: Noto Color Emoji:pixelsize=13:antialias=true:autohint=true
-*.dwmfont: fixed:size=12:antialias=true:autohint=true
-*.dwmfontalt: mononoki Nerd Font:size=12:antialias=true:autohint=true
+! *.dwmfont: fixed:size=12:antialias=true:autohint=true
+*.dwmfont: NotoSans Nerd Font:size=14:antialias=true:autohint=true
+*.dwmfontalt: mononoki Nerd Font:size=13:antialias=true:autohint=true
 *.dmenufont: fixed:size=10
 
 !! ST settings
@@ -42,38 +43,38 @@
 /* background 258 */
 /* foreground 259 */
 
-!! Tokyo Night Storm
+!! Fairy dark
 !! Terminal Colors
-*.color0: #414868
-*.color1: #f7768e
-*.color2: #9ece6a
-*.color3: #7aa2f7
-*.color4: #e0af68
-*.color5: #bb9af7
-*.color6: #7dcfff
-*.color7: #eeffff
-*.color8: #414868
-*.color9: #f7768e
-*.color10: #9ece6a
-*.color11: #7aa2f7
-*.color12: #e0af68
-*.color13: #bb9af7
-*.color14: #7dcfff
-*.color15: #eeffff
-*.cursor: #e0af68
+*.color0: #42395d
+*.color1: #a8757d
+*.color2: #ff857f
+*.color3: #e6c000
+*.color4: #ae81ff
+*.color5: #716799
+*.color6: #c2ffdf
+*.color7: #f8f8f2
+*.color8: #75507b
+*.color9: #ffb8d1
+*.color10: #f1568e
+*.color11: #d5a425
+*.color12: #c5a3ff
+*.color13: #8077a8
+*.color14: #c2ffff
+*.color15: #f8f8f0
+*.cursor: #ffc6d0
 *.revcursor: #555555
-*.background: #24283b
+*.background: #232731
 *.foreground: #f8f8f0
 *.color260: #5a5475
 *.normbgcolor: #2d3442
 *.normbordercolor: #444444
 *.normfgcolor: #ffffff
-*.selbgcolor: #e0af68
-*.selbordercolor: #e0af50
+*.selbgcolor: #ff19ff
+*.selbordercolor: #cc00cc
 *.selfgcolor: #ffffff
-*.rofibg: #24283b
-*.rofiselbg: #9499a6
-*.rofifg: #e0af68
+*.rofibg: #232731
+*.rofiselbg: #94a3a5
+*.rofifg: #ae81ff
 *.rofiurgentfg: #dc322f
 *.rofiseparatorcolor: #35363A
 *.rofiactivefg: #859900

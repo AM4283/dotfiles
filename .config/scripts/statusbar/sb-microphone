@@ -1,8 +1,18 @@
 #!/bin/sh
+# case $BUTTON in
+#   1) micmute ;;
+#   4) micvolincrease ;;
+#   5) micvoldecrease ;;
+# esac
+# VOL=$(micvolume)
 case $BUTTON in
-  1) micmute ;;
-  4) micvolincrease ;;
-  5) micvoldecrease ;;
+  1) pamixer --default-source -t ;;
+  4) pamixer --default-source -i 5 ;;
+  5) pamixer --default-source -d 5 ;;
 esac
-VOL=$(micvolume)
-echo $VOL
+VOL=$(pamixer --default-source --get-volume)
+if [ $(pamixer --default-source --get-mute) = true ]; then
+  echo " $VOL%"
+else
+  echo " $VOL%"
+fi
