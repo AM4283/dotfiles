@@ -75,7 +75,7 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -85,12 +85,12 @@ lvim.builtin.nvimtree.show_icons.git = 0
 -- vim.g["indentLine_bufTypeExclude"] = { 'terminal' }
 
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = "maintained"
+lvim.builtin.treesitter.ensure_installed = "all"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 -- vim.cmd("let g:minimap_auto_start = 0")
 -- vim.cmd("let g:minimap_auto_start_win_enter = 0")
-vim.cmd("let g:scrollbar_excluded_filetypes = ['nerdtree', 'tagbar', 'help', 'terminal', 'dashboard', 'packer', 'minimap', 'WhichKey', 'man']")
+vim.cmd("let g:scrollbar_excluded_filetypes = ['nerdtree', 'tagbar', 'help', 'terminal', 'dashboard', 'packer', 'minimap', 'WhichKey', 'man', 'alpha']")
 vim.cmd("let g:scrollbar_excluded_buftypes = ['terminal']")
 
 -- Additional Plugins
@@ -124,7 +124,7 @@ lvim.plugins = {
       setup = function()
         vim.g.indentLine_enabled = 1
         vim.g.indent_blankline_char = "▏"
-        vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "minimap", "WhichKey", "man"}
+        vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "minimap", "WhichKey", "man", "alpha"}
         vim.g.indent_blankline_buftype_exclude = {"terminal"}
         vim.g.indent_blankline_show_trailing_blankline_indent = false
         vim.g.indent_blankline_show_first_indent_level = false
