@@ -4,7 +4,7 @@ STATE=""
 BAT="BAT1"
 export DISPLAY=:0
 # export XAUTHORITY=/run/lightdm/root/:0
-export XAUTHORITY=/home/albi/.Xauthority
+export XAUTHORITY=$HOME/.Xauthority
 
 if [[ "$1" == "BAT" || "$1" == "AC" ]]; then
   STATE="$1"
@@ -30,7 +30,7 @@ if [[ $STATE == "BAT" ]]; then
   xrandr --output DP-4 --mode "1920x1080_60.00"
   echo "Display set to 60hz"
   # sleep 1.5
-  # /home/albi/.config/scripts/setbright
+  # $HOME/.config/scripts/setbright
 elif [[ $STATE == "AC"  ]]; then
   echo "AC plugged in, set governor to performance"
   cpupower frequency-set -g performance
@@ -39,5 +39,5 @@ elif [[ $STATE == "AC"  ]]; then
   xrandr --output DP-4 --mode "1920x1080"
   echo "Display set to 165hz"
   # sleep 2
-  # /home/albi/.config/scripts/setbright
+  # $HOME/.config/scripts/setbright
 fi

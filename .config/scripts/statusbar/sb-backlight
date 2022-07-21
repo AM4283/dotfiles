@@ -1,6 +1,10 @@
 #!/bin/sh
 LIGHT=$(light | awk -F. '{print $1}')
 case $BUTTON in
+  1)
+    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light)
+    echo " $LIGHT%"
+    ;; 
   4)
     # light -A 5
     # if [ "$(acpi -b | awk '{print $3}')" = "Charging," ]; then

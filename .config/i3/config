@@ -38,7 +38,7 @@ smart_borders on
 ###################################
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- /home/albi/.config/scripts/lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.config/scripts/lock --nofork
 
 ################
 ### KEYBINDS ###
@@ -65,17 +65,17 @@ bindsym $mod+Tab exec "rofi -modi window -show window"
 bindsym $mod+d exec "rofi -modi window#ssh#drun#run -show drun" 
 mode "$mode_rofi" {
         bindsym apostrophe exec "rofi -show emoji -modi emoji"
-        bindsym b exec /home/albi/dmscripts/dmsearch
-        bindsym x exec /home/albi/dmscripts/dmkill
-        bindsym e exec /home/albi/dmscripts/dmconf; mode "default"
+        bindsym b exec $HOME/dmscripts/dmsearch
+        bindsym x exec $HOME/dmscripts/dmkill
+        bindsym e exec $HOME/dmscripts/dmconf; mode "default"
         bindsym Escape mode "default"
 }
 #bindsym $mod+d exec "rofi -modi window#ssh#drun#run -show drun"
 #bindsym $mod+Tab exec "rofi -modi window -show window"
 #bindsym $mod+apostrophe exec "rofi -show emoji -modi emoji"
-#bindsym $mod+b exec /home/albi/dmscripts/dmsearch
-#bindsym $mod+x exec /home/albi/dmscripts/dmkill
-#bindsym $mod+Shift+Return exec /home/albi/dmscripts/dmconf
+#bindsym $mod+b exec $HOME/dmscripts/dmsearch
+#bindsym $mod+x exec $HOME/dmscripts/dmkill
+#bindsym $mod+Shift+Return exec $HOME/dmscripts/dmconf
 # bindsym $mod+b exec "rofi -modi keys -show keys"
 
 # change focus
@@ -159,7 +159,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # exit your computer
-bindsym $mod+z exec /home/albi/.config/scripts/shutdown_menu
+bindsym $mod+z exec $HOME/.config/scripts/shutdown_menu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -189,7 +189,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Keybinding for i3lock
-# bindsym $mod+Shift+w exec /home/albi/.config/scripts/lock
+# bindsym $mod+Shift+w exec $HOME/.config/scripts/lock
 
 ######################
 #### GAP KEYBINDS ####
@@ -478,11 +478,11 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Start i3bar
 #bar {
-#        # status_command i3status -c /home/albi/.config/i3status/i3status.conf
+#        # status_command i3status -c $HOME/.config/i3status/i3status.conf
 #	position top
 #	tray_output primary
 	# tray_output DP-0
-#	status_command i3blocks -c /home/albi/.config/i3blocks/i3blocks.conf
+#	status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
 #        height 25
 #	separator_symbol ")"
 #	i3bar_command i3bar --transparency
@@ -508,8 +508,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec xset m 0 0
 
 # Display Wallpaper
-#exec_always feh --bg-fill /home/albi/Pictures/backgrounds/fireworkanime.png
-exec_always feh --bg-fill /home/albi/Pictures/backgrounds/animelake.jpg
+#exec_always feh --bg-fill $HOME/Pictures/backgrounds/fireworkanime.png
+exec_always feh --bg-fill $HOME/backgrounds/animelake.jpg
 
 # Compositor
 exec_always picom -f
@@ -524,7 +524,7 @@ exec xset s off
 # power manager
 # exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id mate-power-manager
-exec /home/albi/.config/scripts/locker
+exec $HOME/.config/scripts/locker
 
 # notifcation manager
 exec --no-startup-id dunst

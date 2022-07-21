@@ -3,7 +3,7 @@
 # Backlight level from systemd's perspective (change if needed)
 # readonly SYSTEMD_BACKLIGHT_FILE='/var/lib/systemd/backlight/pci-0000:04:00.0:backlight:amdgpu_bl0'
 # readonly SYSTEMD_BACKLIGHT_FILE='/var/lib/systemd/backlight/pci-0000:06:00.0:backlight:amdgpu_bl0'
-readonly SYSTEMD_BACKLIGHT_FILE='/home/albi/.cache/.brightness'
+readonly SYSTEMD_BACKLIGHT_FILE='$HOME/.cache/.brightness'
 # Backlight level from AMDGPU driver
 readonly AMDGPU_BACKLIGHT_FILE='/sys/class/backlight/amdgpu_bl0/brightness'
 

@@ -35,7 +35,7 @@ declare -a options=(
 "neovim - $HOME/.config/nvim/init.vim"
 "lunarvim - $HOME/.config/lvim/config.lua"
 "picom - $HOME/.config/picom/picom.conf"
-"polybar - $HOME/.config/polybar/config"
+"polybar - $HOME/.config/polybar/config.ini"
 #"qtile - $HOME/.config/qtile/config.py"
 #"quickmarks - $HOME/.config/qutebrowser/quickmarks"
 #"qutebrowser - $HOME/.config/qutebrowser/autoconfig.yml"

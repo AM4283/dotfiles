@@ -1,6 +1,6 @@
 #!/bin/sh
 
-readonly SYSTEMD_BACKLIGHT_FILE='/home/albi/.cache/.brightness'
+readonly SYSTEMD_BACKLIGHT_FILE='$HOME/.cache/.brightness'
 # Backlight level from AMDGPU driver
 readonly AMDGPU_BACKLIGHT_FILE='/sys/class/backlight/amdgpu_bl0/brightness'
 

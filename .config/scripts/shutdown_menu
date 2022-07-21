@@ -120,7 +120,7 @@ menu=(
   [Suspend]="systemctl suspend"
   [Halt]="systemctl halt"
 #   [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
-  [Lock]="/home/albi/.config/scripts/lock"
+  [Lock]="~/.config/scripts/lock"
   # [Logout]="i3-msg exit"
   [Logout]="pkill dwm"
   [Cancel]=""

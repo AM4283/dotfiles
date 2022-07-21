@@ -1,4 +1,4 @@
-@import "/home/albi/.config/rofi/themes/colors.rasi"
+@import "./colors.rasi"
 * {
     /**** Solarized colors ****
     * NOTE: I am including all of them even though I am using a sub-set. I keep
@@ -76,6 +76,10 @@ element {
     border:  0;
     padding: 1px 0px 1px 1px;
 }
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+  }
 element normal.normal {
     background-color: @normal-background;
     text-color:       @normal-foreground;

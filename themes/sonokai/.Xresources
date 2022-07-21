@@ -1,3 +1,4 @@
+
 !! Transparency (0-1):
 *.alpha: 0.9
 
@@ -5,7 +6,7 @@
 *.font: Fira Code:pixelsize=17:antialias=true:autohint=true
 *.fontemoji: Noto Color Emoji:pixelsize=13:antialias=true:autohint=true
 ! *.dwmfont: fixed:size=12:antialias=true:autohint=true
-*.dwmfont: NotoSans Nerd Font:size=12:antialias=true:autohint=true
+*.dwmfont: NotoSans Nerd Font:size=16:antialias=true:autohint=true
 *.dwmfontalt: mononoki Nerd Font:size=12:antialias=true:autohint=true
 *.dmenufont: fixed:size=10
 
@@ -52,39 +53,39 @@ Xft.rgba: rgb
 /* background 258 */
 /* foreground 259 */
 
-!! One Half Black
-!! Terminal Colors
-*.color0: #282c34 
-*.color1: #e07c75
-*.color2: #98c379
-*.color3: #e5c07b
-*.color4: #61afef
-*.color5: #c678dd
-*.color6: #56b6c2
-*.color7: #dcdfe4
-*.color8: #282c34
-*.color9: #e06c75
-*.color10: #98c379
-*.color11: #e5c07b
-*.color12: #61afef
-*.color13: #c678dd
-*.color14: #56b6c2
-*.color15: #dcdfe4
-*.cursor: #dcdfe4
+!! Sonokai
+*.color0: #2c2e34
+*.color1: #fc5d7c
+*.color2: #9ec072
+*.color3: #e7c664
+*.color4: #f39660
+*.color5: #b39df3
+*.color6: #76cce0
+*.color7: #e2e2e3
+*.color8: #2c2e34
+*.color9: #fc5d7c
+*.color10: #9ed072
+*.color11: #e7c664
+*.color12: #f39660
+*.color13: #b39df3
+*.color14: #76cce0
+*.color15: #e2e2e3
+*.cursor: #81a764
 *.revcursor: #555555
-*.background: #000000
-*.foreground: #f8f8f0
-*.color260: #5a5475
-*.normbgcolor: #1f1f1f
-*.polybarnormbgcolor: #5a2d3442
+*.background: #282a36
+*.foreground: #ffffff
+*.normbgcolor: #282a38
+*.polybarnormbgcolor: #5a282a36
 *.normbordercolor: #444444
 *.normfgcolor: #ffffff
-*.selbgcolor: #282c34
-*.selbordercolor: #282c34
+*.selbgcolor: #9ed072
+*.polybarselbgcolor: #5A88c0d0
+*.selbordercolor: #81a764
+*.polybarselbordercolor: #0a81a1c1
 *.selfgcolor: #ffffff
-*.rofibg: #0f0f0f
-*.rofiselbg: #9499a6
-*.rofifg: #dcdfe4
+*.rofibg: #2c2e34
+*.rofiselbg: #555555
+*.rofifg: #9ed072
 *.rofiurgentfg: #dc322f
 *.rofiseparatorcolor: #35363A
 *.rofiactivefg: #859900

@@ -124,7 +124,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '/home/albi/Downloads'
+c.downloads.location.directory = os.path.expanduser('~') + '/Downloads'
 
 # Default program used to open downloads. If null, the default internal
 # handler is used. Any `{}` in the string will be expanded to the

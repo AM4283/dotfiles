@@ -6,7 +6,7 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
+-- NOTES
 -- general
 lvim.log.level = "warn"
 -- set theme variant, matching terminal theme if unset
@@ -18,11 +18,13 @@ lvim.builtin.lualine.theme = "rose-pine"
 -- lvim.colorscheme = "tokyonight"
 -- lvim.colorscheme = "nord"
 -- lvim.colorscheme = "dracula"
+vim.opt.termguicolors = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.wrap = true
 vim.cmd('let g:suda_smart_edit = 1')
 vim.opt.guifont = "Fira Code:h11"
+vim.cmd('set nopaste')
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -72,6 +74,11 @@ lvim.builtin.which_key.mappings["t"] = {
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnosticss" },
+}
+
+lvim.builtin.which_key.mappings["."] = {
+  name = "+SymbolsOutline",
+  s = {"<cmd>SymbolsOutline<cr>", "Toggle Symbol Outline Pane"},
 }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -204,6 +211,15 @@ lvim.plugins = {
               })
       end,
     },
+-- highlight TODO comments like todo, hack, bug, fix, warning, note:
+    {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      event = "BufRead",
+      config = function()
+        require("todo-comments").setup()
+      end,
+    },
 -- lsp enhancements
     {
       "tzachar/cmp-tabnine",
@@ -247,6 +263,10 @@ lvim.plugins = {
       "folke/lsp-colors.nvim",
       event = "BufRead",
     },
+    {
+      "simrat39/symbols-outline.nvim",
+      -- cmd = "SymbolsOutline",
+    },
 -- git
     {
       "sindrets/diffview.nvim",
@@ -264,12 +284,27 @@ lvim.plugins = {
 -- treesitter enhancements
     {
       "p00f/nvim-ts-rainbow",
+      config = function()
+        require("nvim-treesitter.configs").setup {
+          rainbow = {
+            enable = true,
+            extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+            max_file_lines = nil, -- Do not enable for files with more than n lines, int
+          }
+        }
+      end,
     },
     {
       "windwp/nvim-ts-autotag",
       event = "InsertEnter",
       config = function()
-        require("nvim-ts-autotag").setup()
+        require'nvim-treesitter.configs'.setup {
+          autotag = {
+            enable = true,
+            filetytpes = { "html", "xml", "php" },
+          }
+        }
+        -- require("nvim-ts-autotag").setup()
       end,
     },
 -- Ranger file explorer

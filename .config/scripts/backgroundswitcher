@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# uses sxiv to switch backgrounds. Place backgrounds in the ~/Pictures/backgrounds/ directory. When sxiv opens, use 'm' to mark the background you want to switch to then quit sxiv using 'q' to switch your background
 choice=$(sxiv -t -o ~/Pictures/backgrounds | sed 1q)
 if [ "$choice" ]; then
   # extension=${choice#*.}

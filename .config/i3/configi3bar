@@ -37,7 +37,7 @@ hide_edge_borders smart_no_gaps
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- /home/albi/.config/scripts/lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.config/scripts/lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -383,11 +383,11 @@ client.urgent		$ubgcolor	$ubgcolor		$textcolor	$indcolor
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # status_command i3status -c /home/albi/.config/i3status/i3status.conf
+        # status_command i3status -c $HOME/.config/i3status/i3status.conf
 	position top
 	tray_output primary
 	# tray_output DP-0
-	status_command i3blocks -c /home/albi/.config/i3blocks/i3blocks.conf
+	status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
         height 25
 	separator_symbol ")"
 	i3bar_command i3bar --transparency
@@ -403,14 +403,14 @@ bar {
 }
 
 # Keybinding for i3lock
-bindsym $mod+Shift+x exec /home/albi/.config/scripts/lock
+bindsym $mod+Shift+x exec $HOME/.config/scripts/lock
 # kill xconfd
 # exec_always killall /usr/lib/xfce4/xfconf/xfconfd
 # Disabling mouse accel
 exec xset m 0 0
 
 # Display Wallpaper
-exec_always feh --bg-fill /home/albi/Pictures/backgrounds/fireworkanime.png
+exec_always feh --bg-fill $HOME/Pictures/backgrounds/fireworkanime.png
 
 # Compositor
 exec_always picom -f
@@ -424,7 +424,7 @@ exec xset s off
 # power manager
 # exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id mate-power-manager
-exec /home/albi/.config/scripts/locker
+exec $HOME/.config/scripts/locker
 # notifcation manager
 # exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 exec --no-startup-id dunst

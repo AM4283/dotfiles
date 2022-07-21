@@ -18,9 +18,11 @@ elif [ "$choice" ]; then
   cp $choice/.gtkrc-2.0 ~/
   cp $choice/settings.ini ~/.config/gtk-3.0/
   cursor="$(grep "gtk-cursor-theme-name" $choice/settings.ini | awk -F = '{print $2}')"
+  icon_theme="$(grep "gtk-icon-theme-name" $choice/settings.ini | awk -F = '{print $2}')"
   sed -i "s/Inherits=.*/Inherits=${cursor}/" ~/.icons/default/index.theme
   xrdb ~/.Xresources
-  ./rofi.sh > ~/.config/rofi/themes/colors.rasi
+  ./rofi.sh 1 > ~/.config/rofi/themes/colors.rasi
+  ./rofi.sh 2 $icon_theme > ~/.config/rofi/config.rasi
   ./alacrittyfont.sh > ~/.config/alacritty/fonts.yml
   ./alacrittycolors.sh > ~/.config/alacritty/colors.yml
   ./i3lockcolors.sh
