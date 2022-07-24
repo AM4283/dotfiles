@@ -76,7 +76,7 @@ Xft.rgba: rgb
 *.foreground: #f8f8f0
 *.color260: #5a5475
 *.normbgcolor: #1f1f1f
-*.polybarnormbgcolor: #5a2d3442
+*.polybarnormbgcolor: #5a000000
 *.normbordercolor: #444444
 *.normfgcolor: #ffffff
 *.selbgcolor: #282c34

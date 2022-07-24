@@ -3,21 +3,22 @@ if [ "$(pidof xidlehook)" ]
 then
   PID=$(pidof xidlehook)
   kill "$PID" > /dev/null
-  /home/albi/.config/scripts/locker
+  $HOME/.config/scripts/locker
 else
-  /home/albi/.config/scripts/locker
+  $HOME/.config/scripts/locker
 fi &
 
-if [ "$(pidof dwmblocks)" ]
-then
-#  PID=$(pidof dwmblocks)
-#  kill "$PID"
-  pkill dwmblocks
-  dwmblocks
-else
-  sleep 0.5
-  dwmblocks
-fi &
+# if [ "$(pidof dwmblocks)" ]
+# then
+# #  PID=$(pidof dwmblocks)
+# #  kill "$PID"
+#   pkill dwmblocks
+#   dwmblocks
+# else
+#   # sleep 0.5
+#   sleep 1
+#   dwmblocks
+# fi &
 
 #xset s off && xset -dpms &
 # xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 &
@@ -33,6 +34,7 @@ parcellite -n &
 #nm-applet &
 picom -f &
 #setbrightness &
-feh --bg-fill /home/albi/Pictures/backgrounds/girlsunset.jpg
-#/home/albi/.config/scripts/locker &
-#/home/albi/.config/polybar/launch.sh
+thunar --daemon &
+feh --bg-fill $HOME/Pictures/backgrounds/hollow-knight-shadow-bg.png
+#$HOME/.config/scripts/locker &
+#$HOME/.config/polybar/launch.sh

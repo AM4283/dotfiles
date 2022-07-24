@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "~/.gtkrc-2.0.mine"
-gtk-theme-name="Nordic-darker"
+gtk-theme-name="Colloid-Grey-Light-Nord"
 gtk-icon-theme-name="Tela-circle-black-dark"
 gtk-font-name="Noto Sans Bold 11"
 gtk-cursor-theme-name="oreo_nord_snow_2_cursors"
