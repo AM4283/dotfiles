@@ -95,7 +95,11 @@ Additionally, as a part of this repository, there are some configurations script
 <a href="https://gitlab.com/dwt1/dmscripts" target="_blank">dmscripts</a> - credit to Derek Taylor on GitLab
 
 ## Donate
-If you enjoy this rice, or any of my other dots on my GitHub and are feeling extra generous, you can donate crypto using the addresses below:
+If you enjoy this rice, or any of my other dots on my GitHub and are feeling extra generous, you can donate money or crypto using the addresses below:
+
+[**Paypal**](https://www.paypal.me/bobwendy1)
+
+[**Venmo**](https://www.venmo.com/u/Bob-Wendy-1)
 
 **XMR**<br>
 48bMjDgejjBa5JMLmUXWHfUxxc4VztE9dSxsnJ5STqDcUcjYk9xHoK59ovWgm6BvrzFfbx2kEA3QyUmgcpzYJ4dH9cLWCYV
