@@ -6,9 +6,10 @@
 # esac
 # VOL=$(micvolume)
 case $BUTTON in
-  1) pamixer --default-source -t ;;
-  4) pamixer --default-source -i 5 ;;
-  5) pamixer --default-source -d 5 ;;
+  1) pamixer --default-source -t && pkill -RTMIN+3 dwmblocks;;
+  2) switchinput_pipewire && pkill -RTMIN+3 dwmblocks;;
+  4) pamixer --default-source -i 5 && pkill -RTMIN+3 dwmblocks;;
+  5) pamixer --default-source -d 5 && pkill -RTMIN+3 dwmblocks;;
 esac
 VOL=$(pamixer --default-source --get-volume)
 if [ $(pamixer --default-source --get-mute) = true ]; then

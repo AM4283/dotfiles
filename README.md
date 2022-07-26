@@ -92,7 +92,8 @@ Use these builds along with these dotfiles to get (almost) my exact desktop!
 
 Additionally, as a part of this repository, there are some configurations scripts that I have taken from others and modified to my needs:
 
-<a href="https://gitlab.com/dwt1/dmscripts" target="_blank">dmscripts</a> - credit to Derek Taylor on GitLab
+- <a href="https://gitlab.com/dwt1/dmscripts" target="_blank">dmscripts</a> - credit to Derek Taylor on GitLab
+- [switchoutput_pipewire and switchinput_pipewire scripts](https://github.com/onezerodan/PipeWire-switch-output) - credit to onezerodan on GitHub for original script
 
 ## Donate
 If you enjoy this rice, or any of my other dots on my GitHub and are feeling extra generous, you can donate money or crypto using the addresses below:

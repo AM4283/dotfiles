@@ -2,7 +2,7 @@
 LIGHT=$(light | awk -F. '{print $1}')
 case $BUTTON in
   1)
-    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light)
+    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light) && pkill -RTMIN+6 dwmblocks
     echo " $LIGHT%"
     ;; 
   4)
@@ -22,7 +22,7 @@ case $BUTTON in
     # fi
     light -A 5
     # light -s sysfs/backlight/nvidia_wmi_ec_backlight -A 5
-    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light)
+    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light) && pkill -RTMIN+6 dwmblocks
     ;;
   5)
     # light -U 5
@@ -41,7 +41,7 @@ case $BUTTON in
     # fi
     light -U 5
     # light -s sysfs/backlight/nvidia_wmi_ec_backlight -U 5
-    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light)
+    light -s sysfs/backlight/nvidia_wmi_ec_backlight -S $(light) && pkill -RTMIN+6 dwmblocks
     ;;
 esac
 echo " $LIGHT%"
