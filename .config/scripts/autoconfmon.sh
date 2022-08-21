@@ -11,7 +11,7 @@ fi
 
 # udev runs as root, so we need to tell it how to connect to the X server:
 export DISPLAY=:0
-export XAUTHORITY=/home/albi/.Xauthority
+export XAUTHORITY=$HOME/.Xauthority
 
 
 # Find out the device path to our graphics card:
