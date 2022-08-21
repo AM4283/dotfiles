@@ -13,23 +13,25 @@ printf 'colors:\n'
 printf '  primary:\n'
 printf '    background:\t%s\n' "'$(xrdb_grep 'background')'"
 printf '    foreground:\t%s\n' "'$(xrdb_grep 'foreground')'"
+printf '  cursor:\n'
+printf '    cursor:\t%s\n' "'$(xrdb_grep 'cursor')'"
 printf '  normal:\n'
 num=0
 index=0
-for i in ${color_idx[@]}
+for i in "${color_idx[@]}"
 do
-  printf '    %s:\t\047%s\047\n' ${color_idx[$num]} $(xrdb_grep 'color'$index)
+  printf '    %s:\t\047%s\047\n' "${color_idx[$num]}" "$(xrdb_grep 'color'$index)"
   num=$((num+1))
   index=$((index+1))
 done
 printf '  bright:\n'
 num=0
-for i in ${color_idx[@]}
+for i in "${color_idx[@]}"
 do
-  printf '    %s:\t\047%s\047\n' ${color_idx[$num]} $(xrdb_grep 'color'$index)
+  printf '    %s:\t\047%s\047\n' "${color_idx[$num]}" "$(xrdb_grep 'color'$index)"
   num=$((num+1))
   index=$((index+1))
 done
 # printf 'background_opacity:\t%s\n' $(xrdb_grep 'alpha')
 printf 'window:\n'
-printf '  opacity:\t%s\n' $(xrdb_grep 'alpha')
+printf '  opacity:\t%s\n' "$(xrdb_grep 'alpha')"

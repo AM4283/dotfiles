@@ -6,7 +6,7 @@ xrdb_grep() {
 }
 # Begin to print alacritty config.
 font=$(xrdb_grep '^*.font')
-fontsize=$(echo $font | awk -F : '{print $2}' | awk -F = '{print $2}')
+fontsize=$(echo "$font" | awk -F : '{print $2}' | awk -F = '{print $2}')
 fontsize=$((fontsize - 5))
 font=${font%%:*}
 font=\"$font\"
