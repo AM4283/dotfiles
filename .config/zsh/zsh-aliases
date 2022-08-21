@@ -53,3 +53,8 @@ alias bell="pactl play-sample bell"
 alias sxiv="devour sxiv"
 alias zathura="devour zathura"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# home cleanup
+alias monerod="monerod --data-dir $XDG_DATA_HOME/bitmonero"
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"

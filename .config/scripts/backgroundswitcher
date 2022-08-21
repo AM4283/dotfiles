@@ -5,9 +5,9 @@ if [ "$choice" ]; then
   # extension=${choice#*.}
   # cp $choice ~/Pictures/backgrounds/background.$extension
   # sed -i "s/feh.*/feh --bg-fill ~\/Pictures\/backgrounds\/background.$extension/g" ~/.dwm/autostart.sh
-  sed -i "s#feh.*#feh --bg-fill $choice#g" ~/.dwm/autostart.sh
+  sed -i "s#feh.*#feh --no-fehbg --bg-fill $choice#g" ~/.dwm/autostart.sh
   # feh --bg-fill ~/Pictures/backgrounds/background.$extension
-  feh --bg-fill $choice
+  feh --no-fehbg --bg-fill $choice
 else
   echo "No selection"
 fi
