@@ -82,6 +82,7 @@ label:focus {
 #custom-spotify {
   /* background-color: #2ecc71; */
   color: #2ecc71;
+  padding-right: 10px;
 }
 
 /* #cpu, #memory { */
