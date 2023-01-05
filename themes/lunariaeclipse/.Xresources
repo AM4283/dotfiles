@@ -29,6 +29,9 @@
 *.mfact: 0.50
 *.resizehints: 1
 
+!! Cursor settings
+Xcursor.theme: oreo_nord_snow_2_cursors
+
 !! Scaling settings
 ! Xft.dpi: 120
 Xft.autohint: 0

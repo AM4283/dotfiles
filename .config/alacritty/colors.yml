@@ -2,6 +2,8 @@ colors:
   primary:
     background:	'#000000'
     foreground:	'#f8f8f0'
+  cursor:
+    cursor:	'#dcdfe4'
   normal:
     black:	'#282c34'
     red:	'#e07c75'

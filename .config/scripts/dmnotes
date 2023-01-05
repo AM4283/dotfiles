@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DMEDITOR="st -e lvim"
+DMEDITOR="$TERMCMD -e lvim"
 DMENU="rofi -dmenu -l 20 -p"
 note_dir="${XDG_CONFIG_HOME}/scripts/notes"
 cp2cb() {

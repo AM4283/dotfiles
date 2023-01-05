@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # Generates an alacritty color config from currently loaded X resources.
 
+# xrdb_grep() {
+#     # xrdb -query | grep -E '^\*'"$1"':'
+#     xrdb -query | grep "$1" | cut -f 2 | head -1
+# }
+
 xrdb_grep() {
-    # xrdb -query | grep -E '^\*'"$1"':'
-    xrdb -query | grep "$1" | cut -f 2 | head -1
+  grep "^\*\.$1:" ~/.Xresources  | cut -d':' -f2- | sed s/" "//
 }
 
 readonly color_idx=(black red green yellow blue magenta cyan white)

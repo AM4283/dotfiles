@@ -9,7 +9,8 @@ export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
 # Terminal + manpager
 # export TERM="xterm-256color"
-export TERM="st-256color"
+# export TERM="st-256color"
+export TERM="foot"
 export RANGER_LOAD_DEFAULT_RC=false
 # export MANPAGER="nvim -c 'set ft=man' -"
 export MANPAGER='lvim -c "%! col -b" -c "set ft=man nomod nolist ignorecase" -'

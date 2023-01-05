@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# uses sxiv to switch backgrounds. Place backgrounds in the ~/Pictures/backgrounds/ directory. When sxiv opens, use 'm' to mark the background you want to switch to then quit sxiv using 'q' to switch your background
+choice=$(sxiv -t -o ~/Pictures/backgrounds | sed 1q)
+if [ "$choice" ]; then
+  # extension=${choice#*.}
+  # cp $choice ~/Pictures/backgrounds/background.$extension
+  # sed -i "s/feh.*/feh --bg-fill ~\/Pictures\/backgrounds\/background.$extension/g" ~/.dwm/autostart.sh
+  sed -i "s#swaybg -i .*#swaybg -i $choice \&#g" ~/.config/hypr/autostart.sh
+  # feh --bg-fill ~/Pictures/backgrounds/background.$extension
+  killall -q swaybg
+  while pgrep -u $UID -x swaybg >/dev/null; do sleep 1; done
+  swaybg -i $choice &
+else
+  echo "No selection"
+fi

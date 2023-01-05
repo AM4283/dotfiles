@@ -20,6 +20,9 @@
 *.cwscale: 1.0
 *.chscale: 1.0
 
+!! Cursor settings
+Xcursor.theme: oreo_nord_night_4_cursors
+
 !! DWM settings
 *.borderpx: 2
 *.snap: 32
@@ -54,7 +57,7 @@ Xft.rgba: rgb
 
 !! One Half Black
 !! Terminal Colors
-*.color0: #282c34 
+*.color0: #282c34
 *.color1: #e07c75
 *.color2: #98c379
 *.color3: #e5c07b

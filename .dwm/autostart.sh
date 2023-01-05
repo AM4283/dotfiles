@@ -35,6 +35,6 @@ parcellite -n &
 picom -f &
 #setbrightness &
 thunar --daemon &
-feh --no-fehbg --bg-fill $HOME/Pictures/backgrounds/hollow-knight-shadow-bg.png
+feh --no-fehbg --bg-fill /home/albi/Pictures/backgrounds/carti.png
 #$HOME/.config/scripts/locker &
 #$HOME/.config/polybar/launch.sh

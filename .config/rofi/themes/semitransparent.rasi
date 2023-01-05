@@ -51,6 +51,7 @@ window {
     transparency: "real";
     border:           1;
     padding:          20;
+    width:            20%;
 }
 mainbox {
     border:  0;

@@ -20,6 +20,9 @@
 *.cwscale: 1.0
 *.chscale: 1.0
 
+!! Cursor settings
+Xcursor.theme: oreo_nord_yellow_cursors
+
 !! DWM settings
 *.borderpx: 2
 *.snap: 32

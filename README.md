@@ -5,25 +5,28 @@ Includes configurations for the following programs:
 - <a href="https://github.com/alacritty/alacritty" target="_blank">alacritty</a>
 - <a href="https://github.com/karlstav/cava" target="_blank">cava</a>
 - <a href="https://dunst-project.org/" target="_blank">dunst</a>
-- <a href="https://github.com/Airblader/i3" target="_blank">i3-gaps</a>
+- <a href="https://codeberg.org/dnkl/foot" target="_blank">foot</a>
+- <a href="https://github.com/hyprwm/Hyprland" target="_blank">Hyprland</a>
+- <a href="https://github.com/i3/i3" target="_blank">i3</a>
 - <a href="https://github.com/vivien/i3blocks" target="_blank">i3blocks</a>
 - <a href="https://github.com/LunarVim/LunarVim" target="_blank">LunarVim</a> (custom IDE-like build of neovim)
 - <a href="https://neovim.io/" target="_blank">neovim</a>
 - <a href="https://github.com/neovide/neovide" target="_blank">neovide</a>
 - <a href="https://github.com/jonaburg/picom" target="_blank">picom-jonaburg</a>
-- <a href="https://github.com/dakata1337/polybar-dwm-module/" target="_blank">polybar</a>
+- <a href="https://github.com/dakata1337/polybar-dwm-module/" target="_blank">polybar</a> (dwm support fork)
 - <a href="https://github.com/qutebrowser/qutebrowser" target="_blank">qutebrowser</a>
 - <a href="https://ranger.github.io/" target="_blank">ranger</a>
-- <a href="https://github.com/davatorium/rofi" target="_blank">rofi</a>
+- <a href="https://github.com/lbonn/rofi" target="_blank">rofi</a> (wayland fork)
 - <a href="https://docs.xfce.org/xfce/thunar/start" target="_blank">Thunar</a>
 - <a href="https://github.com/vim/vim" target="_blank">vim</a>
+- <a href="https://github.com/Alexays/Waybar" target="_blank">waybar</a>
 - <a href="https://www.zsh.org/" target="_blank">zsh</a>
 
 **Note:** Some of my scripts, in particular the ones that have to do with laptop power management are made for use on my machine only so they may not apply to your system/may not work. Check out any scripts that are not working and modify them to your needs.
 
-Additionally, some configs in this repo are unmaintained and might not work as I do not use them anymore. In particular, my i3-gaps, i3blocks and qutebrowser configs are no longer in use.
+Additionally, some configs in this repo are unmaintained and might not work as I do not use them anymore. In particular, my i3, i3blocks and qutebrowser configs are no longer in use.
 
-My current system is running a custom desktop using <a href="https://github.com/AM4283/dwm" target="_blank">dwm</a> as a window manager on Arch Linux. Many of the scripts in this repo are used in my build of it linked below.
+I have two setups on my current Arch Linux system -- one is a desktop using my build of <a href="https://github.com/AM4283/dwm" target="_blank">dwm</a> as a window manager and the other using <a href="https://github.com/hyprwm/Hyprland" target="_blank">Hyprland</a> as a window manager. Many of the scripts in this repo are used in these setups.
 
 <details><summary><h2>Theme Showcase</h2></summary>
 <p>
@@ -53,14 +56,15 @@ My current system is running a custom desktop using <a href="https://github.com/
 </details>
 
 ### Background switcher
-My background switcher script depends on an image viewer called ```sxiv``` for choosing the image and another image viewer called ```feh``` for setting the background. <br>
+My background switcher script depends on an image viewer called ```sxiv``` for choosing the image and another image viewer called ```feh```  (```swaybg``` for wayland) for setting the background. <br>
 When ```sxiv``` opens, use ```m``` to mark the background you want to switch to and then quit using ```q```. <br>
-Additionally, if using my build of dwm with the autostart script defined in ```~/.dwm/autostart.sh``` with a line for ```feh``` to automatically select a background, this script will update that autostart file  to keep the new background on reboot
+Additionally, if using my build of dwm with the autostart script defined in ```~/.dwm/autostart.sh``` with a line for ```feh``` to automatically select a background, this script will update that autostart file  to keep the new background on reboot <br>
+The same is true if you are using my Hyprland config with a line for ```swaybg``` to automatically select a background in ```~/.config/hypr/autostart.sh```
 
 ### Theme switcher
-My GTK/terminal/window manager theme switcher script(s) changes the colorscheme for terminals that use .Xresources (like my build of st), alacritty, rofi, i3-lock-color, the GTK themes, and the dwm window manager from a preset list.
+My GTK/terminal/window manager theme switcher script(s) changes the colorscheme for terminals that use .Xresources (like my build of st), alacritty, foot, waybar, rofi, i3-lock-color, GTK applications, Hyprland, and the dwm window manager from a preset list.
 
-I've only tested it to use my build of dwm, but it can be adapted to other custom desktop environments. In order to use my theme switcher, there are certain other dependencies that are assumed to be installed.
+I've only tested it to use my build of dwm and my Hyprland config, but it can be adapted to other custom desktop environments. In order to use my theme switcher, there are certain other dependencies that are assumed to be installed.
 
 Fonts:<br>
 ```ttf-fira-code nerd-fonts-sans-regular-complete nerd-fonts-mononoki noto-fonts-cjk noto-fonts-emoji```

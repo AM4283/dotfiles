@@ -11,7 +11,8 @@
 # 	anotherDevice=HDMI
 
 headphonesName="Starship/Matisse"
-anotherDevice="GA104"
+# anotherDevice="GA104"
+anotherDevice="Navi 21/23"
 
 
 # Getting headphones sink id

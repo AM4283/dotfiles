@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 # Generates an alacritty font config from currently loaded X resources.
+# xrdb_grep() {
+#     # xrdb -query | grep -E '^\*'"$1"':'
+#     xrdb -query | grep "$1" | cut -f 2 | head -1
+# }
 xrdb_grep() {
-    # xrdb -query | grep -E '^\*'"$1"':'
-    xrdb -query | grep "$1" | cut -f 2 | head -1
+  grep "^\*\.$1:" ~/.Xresources  | cut -d':' -f2- | sed s/" "//
 }
+
 # Begin to print alacritty config.
-font=$(xrdb_grep '^*.font')
+# font=$(xrdb_grep '^*.font')
+font=$(xrdb_grep 'font')
 fontsize=$(echo "$font" | awk -F : '{print $2}' | awk -F = '{print $2}')
 fontsize=$((fontsize - 5))
 font=${font%%:*}

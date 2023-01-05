@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 volume=$(pamixer --get-volume)
-
+if [ -z "$volume" ]; then
+  "$XDG_CONFIG_HOME"/scripts/statusbar/"$(basename "$0")" && exit
+fi
 case $BUTTON in
     1) pamixer -t;;
     # 2) switchoutput && pkill -RTMIN+2 dwmblocks;;
@@ -11,14 +13,14 @@ case $BUTTON in
     5) pamixer -d 5 && pkill -RTMIN+2 dwmblocks;;
 esac
 
-if [ $volume -ge 70 ]; then
+if [ "$volume" -ge 70 ]; then
     icon=" "
-elif [ $volume -gt 30 ]; then
+elif [ "$volume" -gt 30 ]; then
     icon=" "
 else
     icon=" "
 fi
 
-[ $(pamixer --get-mute) = true ] && echo "ﱝ $volume%" && exit
+[ "$(pamixer --get-mute)" = true ] && echo "ﱝ $volume%" && exit
 
 echo "$icon$volume%"

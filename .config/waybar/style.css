@@ -1,0 +1,176 @@
+@import "./colors.css";
+/* * { */
+/*   --blue: #6495ed; */
+/*   --wsactivebg: #282c34; */
+/*   --textfg: #ffffff; */
+/* } */
+window#waybar {
+    font-family: NotoSans Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    background-color: transparent;
+   /* background-color: rgba(43, 48, 59, 0.0); */
+    color: white;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window .modules-left #workspaces button {
+    padding: 5px 10px;
+    border-radius: 0;
+    box-shadow: inset 0 -3px #33ccff;
+    color: @textfg;
+}
+
+window .modules-left #workspaces button:hover {
+    background: @wsactivebg;
+}
+
+window .modules-left #workspaces button.active {
+  background: @wsactivebg;
+}
+
+window .modules-left #workspaces button.urgent {
+    background-color: #e06c75;
+}
+
+#window {
+  padding: 0 10px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#bluetooth,
+#mpd {
+    padding: 0 10px;
+    color: @textfg;
+    /* background-color: #282c34; */
+    box-shadow: inset 0 -3px #03F092;
+}
+
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#clock {
+  padding-right: 0px;
+}
+
+#custom-spotify {
+  /* background-color: #2ecc71; */
+  color: #2ecc71;
+}
+
+/* #cpu, #memory { */
+/*     background-color: #9b59b6; */
+/* } */
+
+/* #disk { */
+/*     background-color: #964B00; */
+/* } */
+
+/* #backlight { */
+/*     background-color: #90b1b1; */
+/* } */
+
+/* #network { */
+/*     background-color: #2980b9; */
+/* } */
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+/* #pulseaudio { */
+/*     background-color: #f1c40f; */
+/*     color: #000000; */
+/* } */
+
+#pulseaudio.muted {
+    background-color: #90b1b1;
+    color: #2a5c45;
+}
+
+/* #wireplumber { */
+/*     background-color: #fff0f5; */
+/*     color: #000000; */
+/* } */
+
+/* #wireplumber.muted { */
+/*     background-color: #f53c3c; */
+/* } */
+
+/* #custom-media { */
+/*     background-color: #66cc99; */
+/*     color: #2a5c45; */
+/*     min-width: 100px; */
+/* } */
+
+/* #custom-media.custom-spotify { */
+/*     background-color: #66cc99; */
+/* } */
+
+/* #custom-media.custom-vlc { */
+/*     background-color: #ffa000; */
+/* } */
+
+/* #temperature { */
+/*     background-color: #f0932b; */
+/* } */
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+/* #tray { */
+    /* background-color: #2980b9; */
+/* } */
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}

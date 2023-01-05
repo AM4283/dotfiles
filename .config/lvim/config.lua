@@ -13,7 +13,7 @@ lvim.log.level = "warn"
 -- @usage 'main' | 'moon' | 'dawn'
 vim.g.rose_pine_variant = 'main'
 lvim.format_on_save = false
-lvim.colorscheme = "rose-pine"
+lvim.colorscheme = "lunar"
 lvim.builtin.lualine.theme = "rose-pine"
 -- lvim.colorscheme = "tokyonight"
 -- lvim.colorscheme = "dracula"
@@ -70,10 +70,10 @@ lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnosticss" },
+  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnosticss" },
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnosticss" },
+  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnosticss" },
 }
 
 lvim.builtin.which_key.mappings["."] = {
@@ -83,10 +83,12 @@ lvim.builtin.which_key.mappings["."] = {
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
-lvim.builtin.notify.active = true
+lvim.builtin.alpha.mode = "dashboard"
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+-- lvim.builtin.nvimtree.show_icons.git = 0
 -- vim.cmd ("let g:indentLine_char = '|'")
 -- vim.g["indentLine_fileTypeExclude"] = { 'dashboard', 'WhichKey', 'man', 'terminal', 'help' }
 -- vim.g["indentLine_bufTypeExclude"] = { 'terminal' }
@@ -108,7 +110,7 @@ lvim.plugins = {
     {"shaunsingh/nord.nvim"},
     {"Mofiqul/dracula.nvim"},
     {
-      'rose-pine/neovim',
+      "rose-pine/neovim",
       as = 'rose-pine',
       tag = 'v0.*',
     },
@@ -326,20 +328,21 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
+lvim.autocommands = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
   -- { "TermOpen", "*", "IndentLinesDisable" },
-  { "BufWinEnter", "*.html", "TSBufDisable highlight" },
-  { "BufWritePost", "~/suckless/dwmblocks/blocks.h", "!cd ~/suckless/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" },
-  { "BufWritePost", "~/suckless/dwm/config.h", "!cd ~/suckless/dwm/; sudo make clean install" },
-  { "BufWritePost", "~/suckless/dwm/config.def.h", "!cd ~/suckless/dwm/; cp config.def.h config.h && sudo make clean install"},
-  { "BufWritePost", "~/suckless/dwmorig/config.h", "!cd ~/suckless/dwmorig/; sudo make clean install" },
-  { "BufWritePost", "~/suckless/dwmorig/config.def.h", "!cd ~/suckless/dwmorig/; cp config.def.h config.h && sudo make clean install"},
-  { "BufWritePost", "~/.dwmblocks/blocks.h", "!cd ~/.dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" },
-  { "BufWritePost", "~/.dwm/config.h", "!cd ~/.dwm/; sudo make clean install" },
-  { "BufWritePost", "~/.dwm/config.def.h", "!cd ~/.dwm/; cp config.def.h config.h && sudo make clean install"},
-  { "BufWritePost", "~/.Xresources", "!xrdb ~/.Xresources"},
-  { "WinScrolled,VimResized,QuitPre", "*", "silent! lua require('scrollbar').show()"},
-  { "WinEnter,FocusGained", "*", "silent! lua require('scrollbar').show()"},
-  { "WinLeave,BufLeave,BufWinLeave,FocusLost", "*", "silent! lua require('scrollbar').clear()"}
+  -- { "BufReadPost,FileReadPost", "*", "normal zR" },
+  { "BufWinEnter", { pattern = { "*.html" }, command =  "TSBufDisable highlight" } },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/suckless/dwmblocks/blocks.h" }, command =  "!cd ~/suckless/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" } },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/suckless/dwm/config.h" }, command = "!cd ~/suckless/dwm/; sudo make clean install" } },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/suckless/dwm/config.def.h" }, command = "!cd ~/suckless/dwm/; cp config.def.h config.h && sudo make clean install"} },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/suckless/dwmorig/config.h" }, command = "!cd ~/suckless/dwmorig/; sudo make clean install" } },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/suckless/dwmorig/config.def.h" }, command = "!cd ~/suckless/dwmorig/; cp config.def.h config.h && sudo make clean install"} },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/.dwmblocks/blocks.h" }, command = "!cd ~/.dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }" } },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/.dwm/config.h" } , command = "!cd ~/.dwm/; sudo make clean install" } },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/.dwm/config.def.h" }, command = "!cd ~/.dwm/; cp config.def.h config.h && sudo make clean install"} },
+  { "BufWritePost", { pattern = { os.getenv("HOME") .. "/.Xresources" }, command = "!xrdb ~/.Xresources"} },
+  { "WinScrolled,VimResized,QuitPre", { pattern = { "*" }, command = "silent! lua require('scrollbar').show()"} },
+  { "WinEnter,FocusGained", { pattern = { "*" }, command = "silent! lua require('scrollbar').show()"} },
+  { "WinLeave,BufLeave,BufWinLeave,FocusLost", { pattern = { "*" }, command = "silent! lua require('scrollbar').clear()"} }
 }
