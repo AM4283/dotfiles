@@ -84,7 +84,7 @@
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "alacritty -e nmtui"
+        "on-click-right": "footclient -e nmtui"
     },
     "bluetooth": {
     	"format": "",
@@ -122,9 +122,9 @@
         "exec": "/usr/bin/python3 $XDG_CONFIG_HOME/scripts/spotify_waybar --player spotify",
         "format": "  {}",
         "return-type": "json",
-        "on-click": "playerctl play-pause",
-        "on-click-middle": "playerctl next",
-        "on-click-right": "playerctl previous"
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-middle": "playerctl -p spotify next",
+        "on-click-right": "playerctl -p spotify previous"
     },
     "custom/media": {
         "format": "{icon} {}",

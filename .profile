@@ -31,13 +31,13 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 # export TERMCMD=st
 # export TERM=st-256color
 export TERMCMD=footclient
-# export TERM=foot
+export TERM=foot
 export XCURSOR_SIZE=24
 export XCURSOR_THEME=oreo_nord_snow_3_cursors
 # export GTK_THEME=Colloid-Grey-Dark
 export CLUTTER_BACKEND="wayland"
 export GDK_BACKEND="wayland,x11"
-export SDL_VIDEODRIVER=wayland
+# export SDL_VIDEODRIVER=wayland
 export QT_QPA_PLATFORM="wayland;xcb"
 
 export ZDOTDIR=$HOME/.config/zsh

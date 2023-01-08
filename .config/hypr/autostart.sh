@@ -7,8 +7,8 @@ gtk_theme="$(grep 'gtk-theme-name' "$config" | sed 's/.*\s*=\s*//')"
 icon_theme="$(grep 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"
 cursor_theme="$(grep 'gtk-cursor-theme-name' "$config" | sed 's/.*\s*=\s*//')"
 font_name="$(grep 'gtk-font-name' "$config" | sed 's/.*\s*=\s*//')"!/bin/sh
-monospace_font_name="$(grep "\*\.font:" .Xresources | awk -F : '{print $2}' | sed s/" "//)"
-monospace_font_size=$(($(grep "\*\.font:" .Xresources | awk -F : '{print $3}' | awk -F = '{print $2}')-5))
+monospace_font_name="$(grep "\*\.font:" ~/.Xresources | awk -F : '{print $2}' | sed s/" "//)"
+monospace_font_size=$(($(grep "\*\.font:" ~/.Xresources | awk -F : '{print $3}' | awk -F = '{print $2}')-5))
 
 gsettings set "$gnome_schema" gtk-theme "$gtk_theme"
 gsettings set org.gnome.desktop.wm.preferences theme "$gtk_theme" &
@@ -35,8 +35,7 @@ dunst &
 # swww init
 killall -q swaybg
 while pgrep -u $UID -x swaybg >/dev/null; do sleep 1; done
-swaybg -i /home/albi/Pictures/backgrounds/carti.png &
-# lxpolkit &
+swaybg -i /home/albi/Pictures/backgrounds/girlsunset.jpg &
 
 killall -q waybar
 while pgrep -u $UID -x waybar >/dev/null; do sleep 1; done
@@ -50,12 +49,11 @@ gammastep-indicator &
 
 # echo "done with gammastep"
 blueman-applet &
-lxpokit &
+lxpolkit &
 foot --server &
 
 killall -q swayidle
 while pgrep -u $UID -x swayidle >/dev/null; do sleep 1; done
-swayidle -w \
-  timeout 600 "notify-send -u critical -t -1 'Locking Screen in 30 Seconds'" \
-  timeout 630 "waylock --init-color '#000000' --input-color '#789FF2'" \
-  timeout 900 "systemctl suspend"
+swayidle -w timeout 600 "notify-send -u critical -t -1 'Locking Screen in 30 Seconds'" &
+swayidle -w timeout 630 "waylock --init-color '#000000' --input-color '#789FF2'" &
+swayidle -w timeout 900 "systemctl suspend" &

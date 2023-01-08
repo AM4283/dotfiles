@@ -36,7 +36,7 @@ elif [ "$choice" ]; then
   cp "$choice"/settings.ini ~/.config/gtk-3.0/
   cursor="$(grep "gtk-cursor-theme-name" "$choice"/settings.ini | awk -F = '{print $2}')"
   icon_theme="$(grep "gtk-icon-theme-name" "$choice"/settings.ini | awk -F = '{print $2}')"
-  gtk_theme="$(grep "gtk-theme-name" "$choice"/settings.ini | awk -F = '{print $2}')"
+  # gtk_theme="$(grep "gtk-theme-name" "$choice"/settings.ini | awk -F = '{print $2}')"
   sed -i "s/Inherits=.*/Inherits=${cursor}/" ~/.icons/default/index.theme
   sed -i "s/Inherits=.*/Inherits=${cursor}/" ~/.local/share/icons/default/index.theme
   # sed -i "s/export GTK_THEME=.*/export GTK_THEME=${gtk_theme}/" ~/.profile
@@ -50,9 +50,10 @@ elif [ "$choice" ]; then
   ./footcolors.sh > ~/.config/foot/colors.ini
   ./waybarcolors.sh > ~/.config/waybar/colors.css
   ./i3lockcolors.sh
+  ./hyprland_colors.sh
   kill -HUP "$(pidof dwm)"
   kill "$(pidof foot)"
-  hyprctl reload
+  # hyprctl reload
 else
   echo "Program terminated." && exit 0
 fi

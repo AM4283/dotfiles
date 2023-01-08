@@ -85,6 +85,8 @@ Xft.rgba: rgb
 *.selbordercolor: #bd93f9
 *.polybarselbordercolor: #0a81a1c1
 *.selfgcolor: #ffffff
+*.bar_wsunderline: #ff79c6
+*.bar_statusunderline: #bd93f9
 *.rofibg: #282a36
 *.rofiselbg: #555555
 *.rofifg: #bd93f9

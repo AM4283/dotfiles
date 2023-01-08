@@ -21,7 +21,7 @@
 *.chscale: 1.0
 
 !! Cursor settings
-Xcursor.theme: oreo_nord_night_4_cursors
+Xcursor.theme: oreo_nord_snow_3_cursors
 
 !! DWM settings
 *.borderpx: 2
@@ -85,6 +85,8 @@ Xft.rgba: rgb
 *.selbgcolor: #282c34
 *.selbordercolor: #282c34
 *.selfgcolor: #ffffff
+*.bar_wsunderline: #33ccff
+*.bar_statusunderline: #00ff99
 *.rofibg: #0f0f0f
 *.rofiselbg: #9499a6
 *.rofifg: #dcdfe4
